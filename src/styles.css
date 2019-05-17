@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+body {
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+    font-size: .875rem !important;
+}
+
+.basic-container {
+    padding: 30px;
+}
+
+.version-info {
+    font-size: 8pt;
+    float: right;
+}
+
+.foto-paciente-sm {
+    width: 40px;
+}
+
+.alta {
+    color: brown;
+}
+
+.espera {
+    color: red;
+}
+
+.tratamiento {
+    color: green;
+}
+
+.evaluacion {
+    color: blue;
+}
