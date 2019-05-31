@@ -1,3 +1,6 @@
+export { FechaEdadService } from './fechaEdad/fecha-edad.service';
+export { SexoService } from './sexo/sexo.service';
+export { TipoDocService } from './tipoDoc/tipo-doc.service';
 export { CsvService } from './csv/csv.service';
 export { CopyService } from './copy/copy.service';
 export { EmpresaService } from './empresa/empresa.service';

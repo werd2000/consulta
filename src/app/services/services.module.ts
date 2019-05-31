@@ -7,6 +7,9 @@ import { ExportPdfService } from './exportPdf/export-pdf.service';
 import { EmpresaService } from './empresa/empresa.service';
 import { CopyService } from './copy/copy.service';
 import { CsvService } from './csv/csv.service';
+import { TipoDocService } from './tipoDoc/tipo-doc.service';
+import { SexoService } from './sexo/sexo.service';
+import { FechaEdadService } from './fechaEdad/fecha-edad.service';
 
 
 
@@ -23,7 +26,10 @@ import { CsvService } from './csv/csv.service';
     ExportPdfService,
     EmpresaService,
     CopyService,
-    CsvService
+    CsvService,
+    TipoDocService,
+    SexoService,
+    FechaEdadService
   ]
 })
 export class ServiceModule { }

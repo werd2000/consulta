@@ -1,29 +1,30 @@
 // ========================================================
-// Clase Paciente implementa la interface PacienteInterface
+// Clase Paciente
 // ========================================================
 
 import { Domicilio } from './domicilio.model';
 import { Contacto } from './contacto.model';
 import { Ssocial } from './ssocial.model';
-import { PacienteInterface } from '../interfaces/paciente.interface';
+import { Familia } from './familia.model';
 
-export class PacienteProfile implements PacienteInterface {
+export class PacienteProfile {
 
     constructor(
         public apellido: string,
         public nombre: string,
-        public tipo_doc: string,
-        public nro_doc: string,
+        public tipoDoc: string,
+        public nroDoc: string,
         public nacionalidad: string,
         public sexo: string,
-        public fecha_nac: string,
+        public fechaNac: string,
         public estado: string,
-        public borrado: boolean,
         public fechaAlta: string,
+        public fechaBaja: string,
+        public borrado: boolean,
         public domicilio?: Domicilio,
         public contactos?: Contacto[],
         public ssocial?: Ssocial,
-        // public familia?: Familia[],
+        public familia?: Familia[],
         public img?: string,
         public observaciones?: string,
         public actualizadoEl?: string,

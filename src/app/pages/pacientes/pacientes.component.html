@@ -22,7 +22,7 @@
             <button mat-icon-button (click)="imprimir()">
                 <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Imprimir icon">print</mat-icon>
             </button>
-            <button mat-icon-button (click)="crearNuevoPaciente()">
+            <button mat-icon-button (click)="crearNuevoPaciente()" color="accent">
                 <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Nuevo Paciente icon">person_add</mat-icon>
             </button>
         </mat-toolbar-row>
@@ -71,6 +71,21 @@
             <ng-container matColumnDef="estado">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
                 <mat-cell *matCellDef="let element" [ngClass]="element.estado | lowercase">{{ element.estado }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-icon-button (click)="ver(element)">
+                        <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Ver icon">remove_red_eye</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="editar(element)">
+                        <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Editar icon">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="eliminar(element)">
+                        <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Eliminar icon">delete</mat-icon>
+                    </button>
+                </mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

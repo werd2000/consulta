@@ -33,3 +33,27 @@ body {
 .evaluacion {
     color: blue;
 }
+
+.w-100 {
+    width: 100%;
+}
+
+.w-75 {
+    width: 74% !important;
+}
+
+.w-50 {
+    width: 48% !important;
+}
+
+.w-25 {
+    width: 24% !important;
+}
+
+.mr-4 {
+    margin-right: 4%;
+}
+
+.mr-2 {
+    margin-right: 2% !important;
+}

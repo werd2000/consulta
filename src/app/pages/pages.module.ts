@@ -17,6 +17,8 @@ import { PipesModule } from '../pipes/pipes.module';
 // Componentes
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PacientesComponent } from './pacientes/pacientes.component';
+import { PacienteComponent } from './pacientes/paciente.component';
+import { PacientePrincipalComponent } from '../components/forms/paciente/pacientePrincipal.component';
 
 
 @NgModule({
@@ -33,10 +35,13 @@ import { PacientesComponent } from './pacientes/pacientes.component';
     // PagesComponent,
     DashboardComponent,
     PacientesComponent,
+    PacienteComponent,
+    PacientePrincipalComponent
   ],
   exports: [
     // PagesComponent,
     DashboardComponent,
+    PacientePrincipalComponent
   ]
 })
 export class PagesModule { }

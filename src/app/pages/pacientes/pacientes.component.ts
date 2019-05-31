@@ -18,7 +18,8 @@ export class PacientesComponent implements OnInit {
     'nombre',
     'nro_doc',
     'fecha_nac',
-    'estado'
+    'estado',
+    'acciones'
   ];
   dataSource: MatTableDataSource<any>;
   cargando = true;
@@ -41,7 +42,6 @@ export class PacientesComponent implements OnInit {
     .subscribe( res => {
       this.cargando = true;
       this.listaPacientes = res;
-      console.log(res[0]);
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -54,7 +54,7 @@ export class PacientesComponent implements OnInit {
   }
 
   crearNuevoPaciente() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/paciente/nuevo']);
   }
 
   imprimir() {
@@ -86,6 +86,18 @@ export class PacientesComponent implements OnInit {
     this.csvService.data = this.listaPacientes;
     this.csvService.exportarDatos();
     this.csvService.exportar();
+  }
+
+  editar(paciente) {
+    this.router.navigate(['/paciente/editar/' + paciente._id]);
+  }
+
+  ver(paciente) {
+    this.router.navigate(['/paciente/ver/' + paciente._id]);
+  }
+
+  eliminar(paciente) {
+    this.pacienteService.deletePaciente(paciente);
   }
 
 }

@@ -15,7 +15,8 @@ export class PrintService {
 
   constructor() { }
 
-  crearLista(encabezado: string[], listado: PacienteProfile[] | ProfesionalProfile[], tipo: string ) {
+  // crearLista(encabezado: string[], listado: PacienteProfile[] | ProfesionalProfile[], tipo: string ) {
+  crearLista(encabezado: string[], listado: PacienteProfile[], tipo: string ) {
     // Construct a table for printing
     this.lista = '<div class="container">';
     this.lista += '<div class="table-responsive">';
@@ -29,10 +30,70 @@ export class PrintService {
       this.lista += '<td class=""><img src="' + item.img + '" class="h-25"></td>';
       this.lista += '<td>' + item.apellido + '</td>';
       this.lista += '<td>' + item.nombre + '</td>';
-      this.lista += '<td>' + item.nro_doc + '</td>';
-      this.lista += '<td>' + item.fecha_nac + '</td>';
+      this.lista += '<td>' + item.nroDoc + '</td>';
+      this.lista += '<td>' + item.fechaNac + '</td>';
       this.lista += '</tr>';
     }
+    this.lista += '</tbody>';
+    this.lista += '</table>';
+    this.lista += '</div>';
+    this.lista += '</div>';
+  }
+
+  crearFicha( paciente: PacienteProfile, tipo: string ) {
+    // Construct a table for printing
+    this.lista = '<div class="container">';
+    this.lista += '<h3 class="text-center bg-primary text-white">' + this.titulo + '</h3>';
+    // this.lista += '<h5>Actualizado el ' + paciente.actualizadoEl + ' por ' + paciente.actualizadoPor + '</h5>';
+
+    this.lista += '<table class="table">';
+    this.lista += '<tbody>';
+    this.lista += '<tr>';
+    if (paciente.img) {
+      this.lista += '<td rowspan="8" class="w-25"><img src="' + paciente.img + '"></td>';
+    } else {
+// tslint:disable-next-line: max-line-length
+      this.lista += '<td rowspan="8" class="w-25"><img src="https://firebasestorage.googleapis.com/v0/b/cronosapp-12a92.appspot.com/o/img%2Fpaciente%2Fno-img.jpg?alt=media&token=d4ca67cb-c8aa-4c52-9875-422af63fab34"></td>';
+    }
+    this.lista += '<td colspan="2"><h1>' + paciente.getNombreCompleto() + '</h1></td>';
+    this.lista += '</tr>';
+    this.lista += '<tr>';
+    this.lista += '<td>Nacionalidad</td>';
+    this.lista += '<td><h5>' + paciente.nacionalidad + '</h5></td>';
+    this.lista += '</tr>';
+    this.lista += '<tr>';
+    this.lista += '<td>Nro de Doc.</td>';
+    this.lista += '<td><h5>' + paciente.nroDoc + '</h5></td>';
+    this.lista += '</tr>';
+    this.lista += '<tr>';
+    this.lista += '<td>Fecha Nacimiento</td>';
+    this.lista += '<td><h5>' + paciente.fechaNac + '</h5></td>';
+    this.lista += '</tr>';
+    this.lista += '<tr>';
+    this.lista += '<td>Sexo</td>';
+    this.lista += '<td><h5>' + paciente.sexo + '</h5></td>';
+    this.lista += '</tr>';
+    this.lista += '<tr>';
+    this.lista += '<td>Fecha Ingreso</td>';
+    this.lista += '<td><h5>' + paciente.fechaAlta + '</h5></td>';
+    this.lista += '</tr>';
+    this.lista += '<tr>';
+    this.lista += '<td>Fecha Egreso</td>';
+    this.lista += '<td><h5>' + paciente.fechaBaja + '</h5></td>';
+    this.lista += '</tr>';
+    this.lista += '<tr>';
+    this.lista += '<td>Estado</td>';
+    this.lista += '<td><h5>' + paciente.estado + '</h5></td>';
+    this.lista += '</tr>';
+    this.lista += '<tr>';
+    this.lista += '<td colspan="3">Observaciones</td>';
+    this.lista += '</tr>';
+    this.lista += '<tr>';
+    if (paciente.observaciones) {
+      this.lista += '<td colspan="3">' + paciente.observaciones + '</td>';
+    }
+    this.lista += '</tr>';
+
     this.lista += '</tbody>';
     this.lista += '</table>';
     this.lista += '</div>';
