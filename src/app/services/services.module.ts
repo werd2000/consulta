@@ -10,7 +10,9 @@ import { CsvService } from './csv/csv.service';
 import { TipoDocService } from './tipoDoc/tipo-doc.service';
 import { SexoService } from './sexo/sexo.service';
 import { FechaEdadService } from './fechaEdad/fecha-edad.service';
-
+import { UsuarioService } from './usuario/usuario.service';
+import { PrintUsuarioService } from './print/print.usuario.service';
+import { DomicilioService } from './domicilio/domicilio.service';
 
 
 
@@ -29,7 +31,10 @@ import { FechaEdadService } from './fechaEdad/fecha-edad.service';
     CsvService,
     TipoDocService,
     SexoService,
-    FechaEdadService
+    FechaEdadService,
+    UsuarioService,
+    PrintUsuarioService,
+    DomicilioService
   ]
 })
 export class ServiceModule { }

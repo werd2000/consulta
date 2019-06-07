@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ImagenPipe } from './imagen.pipe';
+import { RoleUsuarioPipe } from './role-usuario.pipe';
+import { UsuarioGooglePipe } from './usuario-google.pipe';
 // import { EstadoPacientePipe } from './estado-paciente.pipe';
 // import { AreaProfesionalPipe } from './area-profesional.pipe';
 // import { SafeHtmlPipe } from './safe-html.pipe';
@@ -9,6 +11,8 @@ import { ImagenPipe } from './imagen.pipe';
   ],
   declarations: [
     ImagenPipe,
+    RoleUsuarioPipe,
+    UsuarioGooglePipe
     // EstadoPacientePipe,
     // AreaProfesionalPipe,
     // UsuarioPipe,
@@ -16,6 +20,8 @@ import { ImagenPipe } from './imagen.pipe';
   ],
   exports: [
     ImagenPipe,
+    RoleUsuarioPipe,
+    UsuarioGooglePipe
     // EstadoPacientePipe,
     // AreaProfesionalPipe,
     // UsuarioPipe,

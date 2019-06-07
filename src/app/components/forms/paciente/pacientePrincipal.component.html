@@ -2,7 +2,6 @@
     <mat-card class="form-principal">
 
         <mat-card-content *ngIf="paciente">
-
             <form [formGroup]="forma" (ngSubmit)="guardar()" class="form-container">
 
                 <mat-form-field>
@@ -24,18 +23,18 @@
 
                     <mat-form-field class="w-75">
                         <input formControlName="nro_doc" matInput placeholder="Nro. Doc.">
-                        <mat-error *ngIf="forma.controls.nro_doc.invalid">{{ error.campovacio }}</mat-error>
+                        <mat-error *ngIf="forma.controls['nro_doc'].invalid">{{ error.campovacio }}</mat-error>
                     </mat-form-field>
                 </div>
 
                 <mat-form-field>
                     <input formControlName="apellido" matInput placeholder="Apellido">
-                    <mat-error *ngIf="forma.controls.apellido.invalid">{{ error.campovacio }}</mat-error>
+                    <mat-error *ngIf="forma.controls['apellido'].invalid">{{ error.campovacio }}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
                     <input formControlName="nombre" matInput placeholder="Nombre">
-                    <mat-error *ngIf="forma.controls.nombre.invalid">{{ error.campovacio }}</mat-error>
+                    <mat-error *ngIf="forma.controls['nombre'].invalid">{{ error.campovacio }}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -52,10 +51,7 @@
 
                 <div class="w-100">
                     <mat-form-field class="w-75 mr-2">
-                        <input matInput formControlName="fecha_nac"
-                            [matDatepicker]="fechaNac"
-                            placeholder="Fecha de nacimiento"
-                            (dateChange)="calcularEdad($event)">
+                        <input matInput formControlName="fecha_nac" [matDatepicker]="fechaNac" placeholder="Fecha de nacimiento" (dateChange)="calcularEdad($event)">
                         <mat-datepicker-toggle matSuffix [for]="fechaNac"></mat-datepicker-toggle>
                         <mat-datepicker #fechaNac value="paciente.fechaNac"></mat-datepicker>
                     </mat-form-field>

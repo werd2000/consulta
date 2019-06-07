@@ -24,7 +24,7 @@
 
     <h3 matSubheader>Mantenimiento</h3>
 
-    <a mat-list-item href="#" routerLinkActive="active">
+    <a mat-list-item [routerLink]="['/usuarios']" routerLinkActive="router-link-active" routerLinkActive="active">
         <mat-icon matListIcon>account_circle</mat-icon>
         Usuarios
     </a>
@@ -38,4 +38,12 @@
         <mat-icon matListIcon>settings_cell</mat-icon>
         Tipo Contactos
     </a>
+
+    <mat-divider></mat-divider>
+
+    <a mat-list-item (click)="usuarioService.logout()">
+        <mat-icon matListIcon>exit_to_app</mat-icon>
+        Salir
+    </a>
+
 </mat-nav-list>

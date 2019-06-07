@@ -1,3 +1,6 @@
+export { DomicilioService } from './domicilio/domicilio.service';
+export { PrintUsuarioService } from './print/print.usuario.service';
+export { UsuarioService } from './usuario/usuario.service';
 export { FechaEdadService } from './fechaEdad/fecha-edad.service';
 export { SexoService } from './sexo/sexo.service';
 export { TipoDocService } from './tipoDoc/tipo-doc.service';

@@ -57,3 +57,36 @@ body {
 .mr-2 {
     margin-right: 2% !important;
 }
+
+.m-a {
+    margin: auto;
+}
+
+.principal-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    flex-flow: row;
+}
+
+.form-principal {
+    width: 75%;
+    -webkit-flex: 3 1 60%;
+    flex: 3 1 60%;
+    -webkit-order: 1;
+    order: 1;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-container>* {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}

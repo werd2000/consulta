@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { PacienteService } from 'src/app/services/service.index';
 import sweetAlert from 'sweetalert';
 import * as moment from 'moment';
+import { UsuarioService } from '../../services/usuario/usuario.service';
+import { Usuario } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-paciente',
@@ -16,13 +18,16 @@ export class PacienteComponent implements OnInit {
   paramId: any;
   paciente: PacienteProfile;
   cargando: boolean;
-  suscription: Subscription;
+  suscription: Subscription[] = [];
   modo: string;
+  actualizadoPor: Usuario;
+  tabActual: number;
 
   constructor(
     public activatedRoute: ActivatedRoute,
     public route: Router,
     public pacientesService: PacienteService,
+    public usuarioService: UsuarioService,
   ) {
     this.cargando = false;
   }
@@ -33,6 +38,7 @@ export class PacienteComponent implements OnInit {
     });
     this.activatedRoute.params.subscribe( params => {
       this.paramId = params.id;
+      this.tabActual = params.tab;
       if (this.paramId !== 'nuevo') {
         this.cargarPaciente(this.paramId);
       } else {
@@ -62,7 +68,8 @@ export class PacienteComponent implements OnInit {
 
   cargarPaciente( id: string ) {
     this.cargando = true;
-    this.suscription = this.pacientesService.getPacienteId(id)
+    this.suscription.push(
+      this.pacientesService.getPacienteId(id)
         .subscribe( (resp: any) => {
           if (resp === undefined) {
             sweetAlert('Error', 'No se encuentra un usuario con esa identificación', 'warning');
@@ -89,10 +96,24 @@ export class PacienteComponent implements OnInit {
               resp.actualizadoEl,
               resp.actualizadoPor,
               resp._id
-            );
+              );
           }
-          this.cargando = false;
-        });
+          if (this.paciente.actualizadoPor) {
+              this.suscription.push(
+              this.usuarioService.getUsuarioId(this.paciente.actualizadoPor)
+                .subscribe( (usuario: Usuario) => {
+                  this.cargando = true;
+                  this.actualizadoPor = usuario;
+                  this.cargando = false;
+                }));
+          }
+        }
+        )
+      );
+  }
+
+  cambioTab(evento: any) {
+    this.tabActual = evento.index;
   }
 
 }

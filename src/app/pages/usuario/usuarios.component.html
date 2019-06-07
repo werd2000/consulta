@@ -4,7 +4,7 @@
 
     <mat-toolbar color="primary">
         <mat-toolbar-row>
-            <span>Pacientes</span>
+            <span>Usuarios</span>
             <span class="toolbar-spacer"></span>
             <button mat-icon-button (click)="csvLista()">
                 <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="CSV icon">
@@ -22,7 +22,7 @@
             <button mat-icon-button (click)="imprimir()">
                 <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Imprimir icon">print</mat-icon>
             </button>
-            <button mat-icon-button (click)="crearNuevoPaciente()" color="accent">
+            <button mat-icon-button (click)="crearNuevoUsuario()" color="accent">
                 <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Nuevo Paciente icon">person_add</mat-icon>
             </button>
         </mat-toolbar-row>
@@ -48,29 +48,24 @@
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="apellido">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.apellido }}</mat-cell>
-            </ng-container>
-
             <ng-container matColumnDef="nombre">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
                 <mat-cell *matCellDef="let element">{{ element.nombre }}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="nro_doc">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Nro. Doc. </mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.nro_doc }}</mat-cell>
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="fecha_nac">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Nacimiento </mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.fecha_nac | date: "dd-MM-yyyy"}}</mat-cell>
+            <ng-container matColumnDef="role">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.role | roleUsuario }}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="estado">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
-                <mat-cell *matCellDef="let element" [ngClass]="element.estado | lowercase">{{ element.estado }}</mat-cell>
+            <ng-container matColumnDef="google">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Google </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.google | usuarioGoogle }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="acciones">

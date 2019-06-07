@@ -6,17 +6,20 @@ import { Domicilio } from './domicilio.model';
 import { Contacto } from './contacto.model';
 import { Ssocial } from './ssocial.model';
 import { Familia } from './familia.model';
+import { PacienteInterface } from '../interfaces/paciente.interface';
 
-export class PacienteProfile {
+export class PacienteProfile implements PacienteInterface {
+
+    imprimible: any;
 
     constructor(
         public apellido: string,
         public nombre: string,
-        public tipoDoc: string,
-        public nroDoc: string,
+        public tipo_doc: string,
+        public nro_doc: string,
         public nacionalidad: string,
         public sexo: string,
-        public fechaNac: string,
+        public fecha_nac: string,
         public estado: string,
         public fechaAlta: string,
         public fechaBaja: string,

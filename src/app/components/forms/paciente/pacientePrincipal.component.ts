@@ -1,7 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PacienteProfile } from 'src/app/models/paciente.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TipoDocService, SexoService, FechaEdadService, PacienteService } from 'src/app/services/service.index';
+import {
+  TipoDocService,
+  SexoService,
+  FechaEdadService,
+  PacienteService,
+  UsuarioService,
+} from 'src/app/services/service.index';
 import * as moment from 'moment';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -40,7 +46,8 @@ export class PacientePrincipalComponent implements OnInit {
     public router: Router,
     private location: Location,
     public pacienteService: PacienteService,
-    public printService: PrintService
+    public printService: PrintService,
+    public usuarioService: UsuarioService,
   ) {  }
 
   ngOnInit() {
@@ -50,7 +57,7 @@ export class PacientePrincipalComponent implements OnInit {
     this.crearFormulario();
     this.listaTipoDoc = this.tipoDocService.tipo_doc;
     this.listaSexos = this.sexoService.sexo;
-    this.edad = this.fechaEdadService.calcularEdad(this.paciente.fechaNac);
+    this.edad = this.fechaEdadService.calcularEdad(this.paciente.fecha_nac);
   }
 
   crearFormulario() {
@@ -66,11 +73,11 @@ export class PacientePrincipalComponent implements OnInit {
           disabled: this.ver
         }, Validators.required),
         tipo_doc: new FormControl({
-          value: this.paciente.tipoDoc,
+          value: this.paciente.tipo_doc,
           disabled: this.ver
         }),
         nro_doc: new FormControl({
-          value: this.paciente.nroDoc,
+          value: this.paciente.nro_doc,
           disabled: this.ver
          }, Validators.required),
         sexo: new FormControl({
@@ -80,7 +87,7 @@ export class PacientePrincipalComponent implements OnInit {
           value: this.paciente.nacionalidad,
           disabled: this.ver}),
         fecha_nac: new FormControl({
-          value: this.paciente.fechaNac,
+          value: this.paciente.fecha_nac,
           disabled: this.ver}),
         fecha_alta: new FormControl({
           value: this.paciente.fechaAlta,
@@ -104,6 +111,9 @@ export class PacientePrincipalComponent implements OnInit {
       this.controlFechaNac(paciente);
       this.controlFechaAlta(paciente);
       this.controlFechaBaja(paciente);
+      paciente.actualizadoPor = this.usuarioService.usuario._id;
+      paciente.actualizadoEl = moment().format('YYYY-MM-DD');
+
       if (this.paciente._id === undefined) {
         console.log(paciente);
         this.pacienteService.createPaciente(paciente);
@@ -115,10 +125,6 @@ export class PacientePrincipalComponent implements OnInit {
 
   }
 
-  editarCampo( paciente: PacienteProfile) {
-    console.log(paciente);
-  }
-
   editarPaciente() {
     this.router.navigate(['/paciente/editar/' + this.paciente._id]);
   }
@@ -128,10 +134,8 @@ export class PacientePrincipalComponent implements OnInit {
   }
 
   imprimirPaciente() {
-    console.log(this.paciente);
     this.printService.titulo = 'Datos del Paciente';
-    const encabezado = ['Imagen', 'Apellido', 'Nombre', 'Nro. Doc.', 'Fecha nac.'];
-    this.printService.crearFicha(this.paciente, 'pacientes');
+    this.printService.crearFichaPaciente(this.paciente);
     this.printService.imprimir();
   }
 

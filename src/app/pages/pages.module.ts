@@ -19,6 +19,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PacientesComponent } from './pacientes/pacientes.component';
 import { PacienteComponent } from './pacientes/paciente.component';
 import { PacientePrincipalComponent } from '../components/forms/paciente/pacientePrincipal.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuariosComponent } from './usuario/usuarios.component';
+import { DomicilioComponent } from '../components/forms/domicilio/domicilio.component';
 
 
 @NgModule({
@@ -36,12 +39,18 @@ import { PacientePrincipalComponent } from '../components/forms/paciente/pacient
     DashboardComponent,
     PacientesComponent,
     PacienteComponent,
-    PacientePrincipalComponent
+    PacientePrincipalComponent,
+    UsuarioComponent,
+    UsuariosComponent,
+    DomicilioComponent
   ],
   exports: [
     // PagesComponent,
     DashboardComponent,
-    PacientePrincipalComponent
+    PacientePrincipalComponent,
+    UsuarioComponent,
+    UsuariosComponent,
+    DomicilioComponent
   ]
 })
 export class PagesModule { }

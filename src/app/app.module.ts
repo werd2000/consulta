@@ -21,6 +21,7 @@ import { PagesModule } from './pages/pages.module';
 
 // Componentes
 import { PagesComponent } from './pages/pages.component';
+import { LoginComponent } from './login/login.component';
 
 // Rutas
 import { APP_ROUTES } from './app.routes';
@@ -29,7 +30,8 @@ import { APP_ROUTES } from './app.routes';
 @NgModule({
   declarations: [
     AppComponent,
-    PagesComponent
+    PagesComponent,
+    LoginComponent
   ],
   imports: [
     APP_ROUTES,

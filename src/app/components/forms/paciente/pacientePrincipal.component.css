@@ -1,4 +1,4 @@
-.form-container {
+/* .form-container {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -6,15 +6,16 @@
 
 .form-container>* {
     width: 100%;
-}
+} */
 
-.form-principal {
+
+/* .form-principal {
     width: 75%;
     -webkit-flex: 3 1 60%;
     flex: 3 1 60%;
     -webkit-order: 1;
     order: 1;
-}
+} */
 
 .foto-principal {
     width: 25%;
@@ -24,12 +25,13 @@
     order: 1;
 }
 
-.principal-container {
+
+/* .principal-container {
     display: -webkit-flex;
     display: flex;
     -webkit-flex-flow: row;
     flex-flow: row;
-}
+} */
 
 
 /* Too narrow to support three columns */

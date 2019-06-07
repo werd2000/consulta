@@ -43,7 +43,7 @@ export class ExportPdfService {
   }
 
   crearLista(lista: any) {
-    this.doc.setFontSize(11);
+    this.doc.setFontSize(10);
     this.doc.line(20, 49, 190, 49);
     this.doc.text('Nº', 20, 55);
     this.doc.text('Apellido', 30, 55);
@@ -60,6 +60,29 @@ export class ExportPdfService {
       this.doc.text(item.nombre, 65, linea.toString());
       this.doc.text(item.tipo_doc + ': ' + item.nro_doc, 120, linea.toString());
       this.doc.text(item.fecha_nac + '', 155, linea.toString());
+      linea += 10;
+      nro += 1;
+    }
+  }
+
+  crearListaUsuarios(lista: any) {
+    this.doc.setFontSize(11);
+    this.doc.line(20, 49, 190, 49);
+    this.doc.text('Nº', 20, 55);
+    this.doc.text('Email', 28, 55);
+    this.doc.text('Nombre', 90, 55);
+    this.doc.text('Role', 135, 55);
+    this.doc.text('Google', 165, 55);
+    this.doc.line(20, 58, 190, 58);
+    this.doc.setFontStyle('normal');
+    let linea = 65;
+    let nro = 1;
+    for (const item of lista) {
+      this.doc.text(nro.toString(), 20, linea.toString());
+      this.doc.text(item.email, 28, linea.toString());
+      this.doc.text(item.nombre, 90, linea.toString());
+      this.doc.text(item.role, 135, linea.toString());
+      this.doc.text(item.google + '', 165, linea.toString());
       linea += 10;
       nro += 1;
     }

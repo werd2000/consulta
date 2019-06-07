@@ -60,7 +60,7 @@ export class PacientesComponent implements OnInit {
   imprimir() {
     this.printService.titulo = 'Lista de Pacientes';
     const encabezado = ['Imagen', 'Apellido', 'Nombre', 'Nro. Doc.', 'Fecha nac.'];
-    this.printService.crearLista(encabezado, this.listaPacientes, 'pacientes');
+    this.printService.crearListaPacientes( encabezado, this.listaPacientes );
     this.printService.imprimir();
   }
 
@@ -68,7 +68,7 @@ export class PacientesComponent implements OnInit {
     this.exportPdfService.setEncabezado();
     this.exportPdfService.setTitle('Lista de pacientes');
     this.exportPdfService.crearLista(this.listaPacientes);
-    this.exportPdfService.guardar('Lista de pacientes.pdf');
+    this.exportPdfService.guardar('Lista_de_pacientes.pdf');
     return;
   }
 
