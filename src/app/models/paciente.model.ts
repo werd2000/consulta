@@ -10,8 +10,6 @@ import { PacienteInterface } from '../interfaces/paciente.interface';
 
 export class PacienteProfile implements PacienteInterface {
 
-    imprimible: any;
-
     constructor(
         public apellido: string,
         public nombre: string,
@@ -27,7 +25,7 @@ export class PacienteProfile implements PacienteInterface {
         public domicilio?: Domicilio,
         public contactos?: Contacto[],
         public ssocial?: Ssocial,
-        public familia?: Familia[],
+        public familiares?: Familia[],
         public img?: string,
         public observaciones?: string,
         public actualizadoEl?: string,

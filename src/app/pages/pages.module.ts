@@ -22,6 +22,14 @@ import { PacientePrincipalComponent } from '../components/forms/paciente/pacient
 import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuariosComponent } from './usuario/usuarios.component';
 import { DomicilioComponent } from '../components/forms/domicilio/domicilio.component';
+import { ContactoComponent } from '../components/forms/contacto/contacto.component';
+import { FamiliaComponent } from '../components/forms/familia/familia.component';
+import { SsocialComponent } from '../components/forms/ssocial/ssocial.component';
+import { PersonalComponent } from './personal/personal.component';
+import { EmpleadoComponent } from './personal/empleado.component';
+import { EmpleadoPrincipalComponent } from '../components/forms/empleado/empleadoPrincipal.component';
+import { ProfesionComponent } from '../components/forms/profesion/profesion.component';
+import { UploadComponent } from '../components/forms/upload/upload.component';
 
 
 @NgModule({
@@ -42,7 +50,15 @@ import { DomicilioComponent } from '../components/forms/domicilio/domicilio.comp
     PacientePrincipalComponent,
     UsuarioComponent,
     UsuariosComponent,
-    DomicilioComponent
+    DomicilioComponent,
+    ContactoComponent,
+    FamiliaComponent,
+    SsocialComponent,
+    PersonalComponent,
+    EmpleadoComponent,
+    EmpleadoPrincipalComponent,
+    ProfesionComponent,
+    UploadComponent
   ],
   exports: [
     // PagesComponent,
@@ -50,7 +66,13 @@ import { DomicilioComponent } from '../components/forms/domicilio/domicilio.comp
     PacientePrincipalComponent,
     UsuarioComponent,
     UsuariosComponent,
-    DomicilioComponent
+    DomicilioComponent,
+    ContactoComponent,
+    FamiliaComponent,
+    SsocialComponent,
+    EmpleadoPrincipalComponent,
+    ProfesionComponent,
+    UploadComponent
   ]
 })
 export class PagesModule { }

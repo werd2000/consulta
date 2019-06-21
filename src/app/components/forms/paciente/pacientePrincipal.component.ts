@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PacienteProfile } from 'src/app/models/paciente.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
@@ -14,8 +14,8 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MY_FORMATS, ERRORES } from 'src/app/config/config';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { PacienteInterface } from 'src/app/interfaces/paciente.interface';
-import { PrintService } from '../../../services/print/print.service';
+import { SubirArchivoService } from 'src/app/services/service.index';
+import sweetAlert from 'sweetalert';
 
 @Component({
   selector: 'app-paciente-principal',
@@ -30,13 +30,15 @@ export class PacientePrincipalComponent implements OnInit {
 
   @Input() paciente: PacienteProfile;
   @Input() modo: string;
+  @Output() imprimir: EventEmitter<PacienteProfile>;
   ver: boolean;
   forma: FormGroup;
   listaEstadosPacientes = ['ESPERA', 'EVALUACION', 'DEVOLUCION', 'TRATAMIENTO', 'ALTA', 'ABANDONO', 'DERIVADO'];
   listaSexos: string[];
   listaTipoDoc: string[];
   edad: string;
-  imagenTemp;
+  imagenSubir: File;
+  imagenTemp: any;
   error = ERRORES;
 
   constructor(
@@ -46,9 +48,11 @@ export class PacientePrincipalComponent implements OnInit {
     public router: Router,
     private location: Location,
     public pacienteService: PacienteService,
-    public printService: PrintService,
     public usuarioService: UsuarioService,
-  ) {  }
+    public subirArchivoService: SubirArchivoService
+  ) {
+    this.imprimir = new EventEmitter();
+  }
 
   ngOnInit() {
     if (this.modo === 'ver') {
@@ -102,7 +106,6 @@ export class PacientePrincipalComponent implements OnInit {
           value: this.paciente.observaciones,
           disabled: this.ver})
       });
-      // this.forma.setValue(this.paciente);
   }
 
   guardar() {
@@ -111,8 +114,13 @@ export class PacientePrincipalComponent implements OnInit {
       this.controlFechaNac(paciente);
       this.controlFechaAlta(paciente);
       this.controlFechaBaja(paciente);
+      paciente.img = this.paciente.img;
       paciente.actualizadoPor = this.usuarioService.usuario._id;
       paciente.actualizadoEl = moment().format('YYYY-MM-DD');
+      paciente.domicilio = this.paciente.domicilio;
+      paciente.contactos = this.paciente.contactos || null;
+      paciente.familiares = this.paciente.familiares || null;
+      paciente.ssocial = this.paciente.ssocial || null;
 
       if (this.paciente._id === undefined) {
         console.log(paciente);
@@ -122,7 +130,6 @@ export class PacientePrincipalComponent implements OnInit {
         this.pacienteService.updatePaciente(paciente);
       }
     }
-
   }
 
   editarPaciente() {
@@ -134,9 +141,7 @@ export class PacientePrincipalComponent implements OnInit {
   }
 
   imprimirPaciente() {
-    this.printService.titulo = 'Datos del Paciente';
-    this.printService.crearFichaPaciente(this.paciente);
-    this.printService.imprimir();
+    this.imprimir.emit(this.paciente);
   }
 
   controlFechaNac(paciente) {
@@ -177,6 +182,31 @@ export class PacientePrincipalComponent implements OnInit {
 
   calcularEdad(event) {
     this.edad = this.fechaEdadService.calcularEdad(this.forma.value.fecha_nac.format('YYYY-MM-DD'));
+  }
+
+  seleccionImagen( archivo: File ) {
+    if ( !archivo ) {
+      this.imagenSubir = null;
+      return;
+    }
+    if ( archivo.type.indexOf('image')) {
+      sweetAlert('Sólo imágenes', 'El archivo seleccionado no es una imagen', 'error');
+      this.imagenSubir = null;
+      return;
+    }
+    this.imagenSubir = archivo;
+
+    const reader = new FileReader();
+    const urlImagenTemp = reader.readAsDataURL( archivo );
+    reader.onloadend = () => this.imagenTemp = reader.result;
+
+  }
+
+  // Toma el archivo y lo lleva al servicio
+  cambiarImagen() {
+    this.subirArchivoService.subirArchivo( this.imagenSubir, 'paciente', this.paciente )
+      .then( resp => sweetAlert('Imagen subida', 'La imagen se subió con exito', 'success'))
+      .catch( error => console.error(error));
   }
 
 }

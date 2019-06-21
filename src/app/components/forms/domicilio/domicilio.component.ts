@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Domicilio } from 'src/app/models/domicilio.model';
 import { ERRORES } from 'src/app/config/config';
 import { Router } from '@angular/router';
 import { DomicilioService, PrintService } from 'src/app/services/service.index';
 import { Location } from '@angular/common';
+import { PersonaInterface } from 'src/app/interfaces/persona.interface';
 
 @Component({
   selector: 'app-domicilio',
@@ -16,6 +17,7 @@ export class DomicilioComponent implements OnInit {
   @Input() persona;
   @Input() tipo: string;
   @Input() modo: string;
+  @Output() imprimir: EventEmitter<PersonaInterface>;
   formaDomicilio: FormGroup;
   domicilio: Domicilio;
   error = ERRORES;
@@ -26,13 +28,15 @@ export class DomicilioComponent implements OnInit {
     public domicilioService: DomicilioService,
     private location: Location,
     public printService: PrintService
-  ) { }
+  ) {
+    this.imprimir = new EventEmitter();
+  }
 
   ngOnInit() {
     if (this.modo === 'ver') {
       this.ver = true;
     }
-    if (this.persona.domicilio === undefined) {
+    if (this.persona.domicilio === undefined || this.persona.domicilio === null) {
       this.domicilio = new Domicilio(
         '',
         '',
@@ -107,11 +111,8 @@ export class DomicilioComponent implements OnInit {
     this.location.back();
   }
 
-  imprimirPaciente() {
-    this.printService.titulo = 'Datos del Paciente';
-    const encabezado = ['Imagen', 'Apellido', 'Nombre', 'Nro. Doc.', 'Fecha nac.'];
-    this.printService.crearFichaPaciente(this.persona);
-    this.printService.imprimir();
+  imprimirPersona() {
+    this.imprimir.emit(this.persona);
   }
 
 }

@@ -8,6 +8,7 @@ import { PersonaInterface } from './persona.interface';
 import { DomicilioInterface } from './domicilio.interface';
 import { ContactoInterface } from './contacto.interface';
 import { SsocialInterface } from './ssocial.interface';
+import { FamiliaInterface } from './familia.interface';
 
 export interface PacienteInterface extends PersonaInterface {
 
@@ -19,6 +20,8 @@ export interface PacienteInterface extends PersonaInterface {
     domicilio?: DomicilioInterface;
     // Puedo guardar un array de contactos
     contactos?: ContactoInterface[];
+    // guarda un array de familiares
+    familiares?: FamiliaInterface[];
     // Datos del seguro social
     ssocial?: SsocialInterface;
     // familia?: Familia[];

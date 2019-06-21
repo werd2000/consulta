@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteProfile } from 'src/app/models/paciente.model';
 import { Subscription } from 'rxjs';
-import { PacienteService } from 'src/app/services/service.index';
+import { PacienteService, PrintService } from 'src/app/services/service.index';
 import sweetAlert from 'sweetalert';
 import * as moment from 'moment';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from 'src/app/models/usuario.model';
+import { Domicilio } from 'src/app/models/domicilio.model';
 
 @Component({
   selector: 'app-paciente',
@@ -28,6 +29,7 @@ export class PacienteComponent implements OnInit {
     public route: Router,
     public pacientesService: PacienteService,
     public usuarioService: UsuarioService,
+    public printService: PrintService
   ) {
     this.cargando = false;
   }
@@ -54,7 +56,7 @@ export class PacienteComponent implements OnInit {
           moment().format('YYYY-MM-DD'),
           '',
           false,
-          null,
+          new Domicilio('', '', '', '', '', '', '', 0, 0),
           null,
           null,
           null,
@@ -62,6 +64,7 @@ export class PacienteComponent implements OnInit {
           '',
           moment().format('YYYY-MM-DD'),
           '');
+        this.actualizadoPor = this.usuarioService.usuario;
       }
     });
   }
@@ -72,7 +75,7 @@ export class PacienteComponent implements OnInit {
       this.pacientesService.getPacienteId(id)
         .subscribe( (resp: any) => {
           if (resp === undefined) {
-            sweetAlert('Error', 'No se encuentra un usuario con esa identificación', 'warning');
+            sweetAlert('Error', 'No se encuentra un paciente con esa identificación', 'warning');
             this.route.navigate(['pacientes']);
           } else {
             this.paciente = new PacienteProfile(
@@ -90,7 +93,7 @@ export class PacienteComponent implements OnInit {
               resp.domicilio,
               resp.contactos,
               resp.ssocial,
-              resp.familia,
+              resp.familiares,
               resp.img,
               resp.observaciones,
               resp.actualizadoEl,
@@ -114,6 +117,12 @@ export class PacienteComponent implements OnInit {
 
   cambioTab(evento: any) {
     this.tabActual = evento.index;
+  }
+
+  imprimir(paciente: PacienteProfile) {
+    this.printService.titulo = 'Datos del Paciente';
+    this.printService.crearFichaPaciente(this.paciente);
+    this.printService.imprimir();
   }
 
 }

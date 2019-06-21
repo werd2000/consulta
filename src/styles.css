@@ -42,8 +42,16 @@ body {
     width: 74% !important;
 }
 
+.w-66 {
+    width: 66% !important;
+}
+
 .w-50 {
     width: 48% !important;
+}
+
+.w-33 {
+    width: 33% !important;
 }
 
 .w-25 {
@@ -60,6 +68,14 @@ body {
 
 .m-a {
     margin: auto;
+}
+
+.mr-2px {
+    margin-right: 2px;
+}
+
+.mb-5 {
+    margin-bottom: 5px !important;
 }
 
 .principal-container {
@@ -89,4 +105,37 @@ body {
 
 .text-center {
     text-align: center;
+}
+
+.foto-perfil {
+    max-width: 100%;
+}
+
+.foto-principal {
+    width: 25%;
+}
+
+@media screen and (max-width:640px) {
+    body {
+        font-size: .675rem !important;
+    }
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.toolbar-icon {
+    padding: 0 14px;
+    display: flex;
+}
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-cell,
+.mat-footer-cell {
+    font-size: 13px !important;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UsuarioService, PrintService } from 'src/app/services/service.index';
+import { UsuarioService, PrintService, SubirArchivoService } from 'src/app/services/service.index';
 import { Subscription } from 'rxjs';
 import sweetAlert from 'sweetalert';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -25,6 +25,7 @@ export class UsuarioComponent implements OnInit {
   error = ERRORES;
   listaRoles: string[] = ['ROLE_ADMIN', 'ROLE_USER'];
   imagenTemp: any;
+  imagenSubir: File;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -32,6 +33,7 @@ export class UsuarioComponent implements OnInit {
     public usuarioService: UsuarioService,
     private location: Location,
     public printService: PrintService,
+    public subirArchivoService: SubirArchivoService,
   ) {
     this.ver = false;
   }
@@ -136,6 +138,31 @@ export class UsuarioComponent implements OnInit {
 
   cancelar() {
     this.location.back();
+  }
+
+  // Toma el archivo y lo lleva al servicio
+  cambiarImagen() {
+    this.subirArchivoService.subirArchivo( this.imagenSubir, 'profesional', this.usuario )
+      .then( resp => sweetAlert('Imagen subida', 'La imagen se subió con exito', 'success'))
+      .catch( error => console.error(error));
+  }
+
+  seleccionImagen( archivo: File ) {
+    if ( !archivo ) {
+      this.imagenSubir = null;
+      return;
+    }
+    if ( archivo.type.indexOf('image')) {
+      sweetAlert('Sólo imágenes', 'El archivo seleccionado no es una imagen', 'error');
+      this.imagenSubir = null;
+      return;
+    }
+    this.imagenSubir = archivo;
+
+    const reader = new FileReader();
+    const urlImagenTemp = reader.readAsDataURL( archivo );
+    reader.onloadend = () => this.imagenTemp = reader.result;
+
   }
 
 }

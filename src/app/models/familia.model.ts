@@ -1,12 +1,12 @@
-export class Familia {
+import { FamiliaInterface } from '../interfaces/familia.interface';
 
-    familiaDe: string;
-    relacion?: string;
-    apellido?: string;
-    nombre?: string;
-    nro_doc?: string;
-    observaciones?: string;
-    _id?: string;
+export class Familia implements FamiliaInterface {
 
-    constructor() { }
+    constructor(
+        public relacion = '',
+        public apellido = '',
+        public nombre = '',
+        public nroDoc = '',
+        public observaciones = ''
+    ) { }
 }

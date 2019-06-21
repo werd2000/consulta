@@ -1,3 +1,13 @@
+export { SubirArchivoService } from './upload/subir-archivo.service';
+export { ModalUploadService } from './upload/modal-upload.service';
+export { PrintPacienteService } from './print/print.paciente.service';
+export { PrintPersonalService } from './print/print.personal.service';
+export { ProfesionService } from './profesion/profesion.service';
+export { AreasService } from './area/area.service';
+export { PersonalService } from './personal/personal.service';
+export { SsocialService } from './ssocial/ssocial.service';
+export { FamiliaService } from './familia/familia.service';
+export { TipoContactoService } from './tipoContacto/tipo-contacto.service';
 export { DomicilioService } from './domicilio/domicilio.service';
 export { PrintUsuarioService } from './print/print.usuario.service';
 export { UsuarioService } from './usuario/usuario.service';

@@ -1,10 +1,10 @@
 export class Profesion {
 
-    area?: string;
-    titulo?: string;
-    institucion?: string;
-    fecha?: string;
-    matProf?: string;
-
-    constructor() { }
+    constructor(
+        public area = '',
+        public titulo = '',
+        public institucion = '',
+        public fecha = '',
+        public matProf = ''
+    ) { }
 }

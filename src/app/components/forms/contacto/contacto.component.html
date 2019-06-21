@@ -1,0 +1,63 @@
+<div class="principal-container">
+    <mat-card class="form-principal">
+
+        <mat-card-content *ngIf="contactos">
+            <form [formGroup]="formaContacto" (ngSubmit)="guardar()" class="form-container">
+
+                <div formArrayName="contactos">
+                    <div class="form-group row" *ngFor="let contacto of formaContacto.controls['contactos'].controls; let i = index" [formGroupName]=i>
+
+                        <mat-form-field class="w-25 mr-2px">
+                            <mat-select placeholder="Tipo" formControlName="tipo">
+                                <mat-option *ngFor="let tipoContacto of listaTipoContactos" [value]="tipoContacto.tipo">
+                                    {{tipoContacto.tipo}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-25 mr-2px">
+                            <input formControlName="valor" matInput placeholder="Valor">
+                        </mat-form-field>
+
+                        <mat-form-field class="w-33 mr-2px">
+                            <input formControlName="observaciones" matInput placeholder="Observaciones">
+                        </mat-form-field>
+
+                        <button mat-button (click)=quitarContacto(i) aria-label="Close" type="button" *ngIf="cantContactos > 1 && !ver">
+                            <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Delete icon">delete</mat-icon>
+                        </button>
+
+
+                    </div>
+                    <a mat-button color="primary" (click)="agregarContacto()" *ngIf="!ver">Agregar nuevo contacto +</a>
+                    <div class="w-100">
+                        <button mat-raised-button color="primary" *ngIf="!ver" class="w-50 mr-2">
+                          <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Guardar icon">save</mat-icon>
+                          Guardar
+                        </button>
+
+                        <button type="button" mat-raised-button color="accent" *ngIf="!ver" class="w-50" (click)="cancelar()">
+                          <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Cancelar icon">cancel</mat-icon>
+                          Cancelar
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
+        </mat-card-content>
+
+        <div class="w-100">
+            <button mat-raised-button color="primary" *ngIf="ver" (click)="editarContacto()" class="w-50 mr-2">
+            <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Cancelar icon">cancel</mat-icon>
+             Editar
+        </button>
+            <button mat-raised-button color="accent" *ngIf="ver" (click)="imprimirPersona()" class="w-50">
+            <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Imprimir icon">print</mat-icon>
+            Imprimir
+        </button>
+        </div>
+
+    </mat-card>
+
+</div>

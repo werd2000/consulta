@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,8 +8,8 @@ import { MaterialModule } from './material.module';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 
@@ -43,9 +43,11 @@ import { APP_ROUTES } from './app.routes';
     BrowserAnimationsModule,
     SharedModule,
     PagesModule,
-    MaterialModule
+    MaterialModule,
   ],
-  providers: [],
+  providers: [
+    AngularFireStorage
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

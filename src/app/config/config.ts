@@ -1,3 +1,4 @@
+export const RELACIONES = ['PADRE', 'MADRE', 'HERMANO/A', 'ABUELO/A', 'OTRO'];
 export const ERRORES = {
   campovacio: 'Este campo no puede quedar vacío'
 };

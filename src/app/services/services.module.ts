@@ -13,7 +13,14 @@ import { FechaEdadService } from './fechaEdad/fecha-edad.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { PrintUsuarioService } from './print/print.usuario.service';
 import { DomicilioService } from './domicilio/domicilio.service';
-
+import { TipoContactoService } from './tipoContacto/tipo-contacto.service';
+import { FamiliaService } from './familia/familia.service';
+import { SsocialService } from './ssocial/ssocial.service';
+import { PersonalService } from './personal/personal.service';
+import { AreasService } from './area/area.service';
+import { ProfesionService } from './profesion/profesion.service';
+import { PrintPersonalService } from './print/print.personal.service';
+import { PrintPacienteService } from './print/print.paciente.service';
 
 
 @NgModule({
@@ -34,7 +41,15 @@ import { DomicilioService } from './domicilio/domicilio.service';
     FechaEdadService,
     UsuarioService,
     PrintUsuarioService,
-    DomicilioService
+    DomicilioService,
+    TipoContactoService,
+    FamiliaService,
+    SsocialService,
+    PersonalService,
+    AreasService,
+    ProfesionService,
+    PrintPersonalService,
+    PrintPacienteService
   ]
 })
 export class ServiceModule { }
