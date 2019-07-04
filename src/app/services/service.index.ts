@@ -1,3 +1,6 @@
+export { ModalTurnoService } from './turnos/modalTurno.service';
+export { TurnosService } from './turnos/turnos.service';
+export { PrintAreaService } from './print/print.area.service';
 export { SubirArchivoService } from './upload/subir-archivo.service';
 export { ModalUploadService } from './upload/modal-upload.service';
 export { PrintPacienteService } from './print/print.paciente.service';

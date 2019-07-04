@@ -1,8 +1,9 @@
 export class TipoContacto {
 
-    tipo?: string;
-    observaciones?: string;
-    _id?: string;
 
-    constructor() { }
+    constructor(
+        public tipo: string,
+        public observaciones?: string,
+        public _id?: string
+    ) { }
 }

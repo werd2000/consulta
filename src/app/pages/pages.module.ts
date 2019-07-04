@@ -30,6 +30,12 @@ import { EmpleadoComponent } from './personal/empleado.component';
 import { EmpleadoPrincipalComponent } from '../components/forms/empleado/empleadoPrincipal.component';
 import { ProfesionComponent } from '../components/forms/profesion/profesion.component';
 import { UploadComponent } from '../components/forms/upload/upload.component';
+import { AreasComponent } from './areas/areas.component';
+import { AreaComponent } from './areas/area.component';
+import { TipoContactosComponent } from './tipo-contacto/tipo-contactos.component';
+import { TipoContactoComponent } from './tipo-contacto/tipo-contacto.component';
+import { TurnosComponent } from './turnos/turnos.component';
+import { AddTurnoComponent } from './turnos/add-turno.component';
 
 
 @NgModule({
@@ -58,7 +64,13 @@ import { UploadComponent } from '../components/forms/upload/upload.component';
     EmpleadoComponent,
     EmpleadoPrincipalComponent,
     ProfesionComponent,
-    UploadComponent
+    UploadComponent,
+    AreasComponent,
+    AreaComponent,
+    TipoContactosComponent,
+    TipoContactoComponent,
+    TurnosComponent,
+    AddTurnoComponent
   ],
   exports: [
     // PagesComponent,
@@ -72,7 +84,16 @@ import { UploadComponent } from '../components/forms/upload/upload.component';
     SsocialComponent,
     EmpleadoPrincipalComponent,
     ProfesionComponent,
-    UploadComponent
-  ]
+    UploadComponent,
+    AreasComponent,
+    AreaComponent,
+    TipoContactosComponent,
+    TipoContactoComponent,
+    TurnosComponent,
+    // AddTurnoComponent
+  ],
+  entryComponents: [
+    AddTurnoComponent
+  ],
 })
 export class PagesModule { }

@@ -1,0 +1,72 @@
+<mat-spinner *ngIf="cargando" style="margin: auto"></mat-spinner>
+
+<mat-card *ngIf="!cargando">
+
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+
+          <span>Turnos del {{ fecha | date: "dd-MM-yyyy" }}</span>
+          <span class="toolbar-spacer"></span>
+          <button type="button" mat-raised-button (click)="hoy()">
+              Hoy
+          </button>
+          <span class="toolbar-spacer"></span>
+          <button mat-mini-fab color="accent" (click)="hoy()">
+            <mat-icon aria-hidden="false" aria-label="ayer icon">
+                keyboard_arrow_left
+            </mat-icon>
+          </button>
+          <button mat-mini-fab color="accent" (click)="hoy()">
+            <mat-icon aria-hidden="false" aria-label="mañana icon">
+                keyboard_arrow_right
+            </mat-icon>
+          </button>
+          <button mat-mini-fab color="warn" (click)="nuevo()" class="ml-5px">
+            <mat-icon aria-hidden="false" aria-label="nuevo icon">
+                today
+            </mat-icon>
+          </button>
+
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-card-content>
+
+      <div class="turnos">
+        <div *ngFor="let column of columns" 
+            class="turno-column"
+            [ngStyle]="{'width': widthColumn}"
+            [id]="column.id">
+          <div class="turno-column-head">
+            <span>{{ column.head }}</span>
+          </div>
+
+          <mat-card *ngFor="let t of column.turnos" class="mat-card-turnos" [ngClass]="t.estilo">
+              
+            <mat-card-header *ngIf="t.paciente">
+                <img mat-card-avatar [src]="t.paciente.img | imagen" class="card-img-turnos">
+                <mat-card-title *ngIf="t.paciente" class="card-title-turnos">
+                  {{ t.paciente.apellido }} {{ t.paciente.nombre }}
+                </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content *ngIf="t" (click)="editarTurno(t)" class="pointer">
+                <p>Hora: {{ t.horaInicio }}</p>
+                <p class="text-muted">{{ t.estado }}</p>
+            </mat-card-content>
+
+            <mat-card-actions>
+              <button mat-icon-button color="warn" aria-label="Eliminar turno" (click)="eliminarTurno(t)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+
+          </mat-card>
+
+        </div>
+      </div>
+    </mat-card-content>
+
+</mat-card>
+
+<!-- <app-add-turno></app-add-turno> -->

@@ -1,0 +1,102 @@
+<div class="principal-container">
+  <mat-card class="form-principal">
+
+      <mat-card-header>
+        <mat-card-title>Nuevo turno</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+          <form [formGroup]="forma" (ngSubmit)="guardarTurno()" class="form-container">
+
+              <mat-form-field>
+                <input type="text" matInput formControlName="idPaciente" [matAutocomplete]="auto" placeholder="Paciente">
+              </mat-form-field>
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let paciente of pacientesConFiltro | async" [value]="paciente">
+                    {{ paciente.apellido }} {{ paciente.nombre }}
+                </mat-option>
+              </mat-autocomplete>
+
+              <!-- <mat-form-field>
+                  <mat-select formControlName="idPaciente" placeholder="Paciente">
+                      <mat-option *ngFor="let paciente of pacientes" [value]="paciente._id">
+                          {{ paciente.apellido }} {{ paciente.nombre }}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field> -->
+
+              <div class="w-100">
+                <mat-form-field class="w-50 mr-2">
+                  <input formControlName="fechaInicio" matInput [matDatepicker]="fechaInicio" placeholder="Fecha de inicio">
+                  <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+                  <mat-datepicker #fechaInicio></mat-datepicker>
+                  <mat-error *ngIf="forma.controls['fechaInicio'].invalid">{{ error.campovacio }}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-50">
+                    <input formControlName="horaInicio" matInput type="time" [min]="horario.inicio" [max]="horario.fin" [step]="horario.paso" placeholder="Hora de Inicio" (blur)="actualizarHoraFin()">
+                    <mat-error *ngIf="forma.controls['horaInicio'].invalid">{{ error.campovacio }}</mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="w-100">
+                <mat-form-field class="w-50 mr-2">
+                  <input formControlName="fechaFin" matInput [matDatepicker]="fechaFin" placeholder="Fecha de fin">
+                  <mat-datepicker-toggle matSuffix [for]="fechaFin"></mat-datepicker-toggle>
+                  <mat-datepicker #fechaFin></mat-datepicker>
+                  <mat-error *ngIf="forma.controls['fechaFin'].invalid">{{ error.campovacio }}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-50">
+                  <input formControlName="horaFin" matInput type="time" [min]="horario.inicio" [max]="horario.fin" [step]="horario.paso" placeholder="Hora de fin">
+                  <mat-error *ngIf="forma.controls['horaFin'].invalid">{{ error.campovacio }}</mat-error>
+                </mat-form-field>
+              </div>
+
+              <mat-form-field>
+                  <mat-select placeholder="Área" formControlName="area">
+                      <mat-option *ngFor="let area of areas" [value]="area.area">
+                          {{area.area}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-select placeholder="Profesional" formControlName="idProfesional">
+                    <mat-option *ngFor="let profesional of profesionales" [value]="profesional._id">
+                        {{profesional.apellido }} {{ profesional.nombre }}
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-select placeholder="Estado" formControlName="estado">
+                    <mat-option *ngFor="let estado of estados" [value]="estado">
+                        {{ estado }}
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                  <textarea formControlName="observaciones" matInput placeholder="Observaciones" rows="3"></textarea>
+              </mat-form-field>
+
+              <div class="w-100">
+                  <button mat-raised-button color="primary" class="w-50 mr-2">
+                      <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Guardar icon">save</mat-icon>
+                      Guardar
+                  </button>
+
+                  <button type="button" mat-raised-button color="accent" class="w-50" (click)="cerrarModal()">
+                      <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Cancelar icon">cancel</mat-icon>
+                      Cancelar
+                  </button>
+              </div>
+
+          </form>
+
+      </mat-card-content>
+
+  </mat-card>
+
+</div>

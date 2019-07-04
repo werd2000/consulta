@@ -65,6 +65,25 @@ export class ExportPdfService {
     }
   }
 
+  crearListaAreas(lista: any) {
+    this.doc.setFontSize(10);
+    this.doc.line(20, 49, 190, 49);
+    this.doc.text('Nº', 20, 55);
+    this.doc.text('Área', 30, 55);
+    this.doc.text('Observaciones', 85, 55);
+    this.doc.line(20, 58, 190, 58);
+    this.doc.setFontStyle('normal');
+    let linea = 65;
+    let nro = 1;
+    for (const item of lista) {
+      this.doc.text(nro.toString(), 20, linea.toString());
+      this.doc.text(item.area, 30, linea.toString());
+      this.doc.text(item.observaciones, 85, linea.toString());
+      linea += 10;
+      nro += 1;
+    }
+  }
+
   crearListaUsuarios(lista: any) {
     this.doc.setFontSize(11);
     this.doc.line(20, 49, 190, 49);

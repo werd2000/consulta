@@ -21,6 +21,9 @@ import { AreasService } from './area/area.service';
 import { ProfesionService } from './profesion/profesion.service';
 import { PrintPersonalService } from './print/print.personal.service';
 import { PrintPacienteService } from './print/print.paciente.service';
+import { PrintAreaService } from './print/print.area.service';
+import { TurnosService } from './turnos/turnos.service';
+import { ModalTurnoService } from './turnos/modalTurno.service';
 
 
 @NgModule({
@@ -49,7 +52,10 @@ import { PrintPacienteService } from './print/print.paciente.service';
     AreasService,
     ProfesionService,
     PrintPersonalService,
-    PrintPacienteService
+    PrintPacienteService,
+    PrintAreaService,
+    TurnosService,
+    ModalTurnoService
   ]
 })
 export class ServiceModule { }

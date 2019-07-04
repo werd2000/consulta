@@ -36,13 +36,24 @@ export class AreasService {
   // Borra un area por id
   // =====================================================================
   deleteArea(area: Area) {
-    this.afs.collection('areas').doc(area._id).delete()
-      .then(resp => {
-        sweetAlert ('Datos borrados', `Los datos del area ${ area.area } se borraron correctamente`, 'success');
-      })
-      .catch( err => {
-        sweetAlert ('Los datos no se borraron', `Los datos del area ${ area.area } no se borraron`, 'warning');
-      });
+    sweetAlert({
+      title: 'Atención, está por borrar datos',
+      text: 'Una vez borrados, no se podrán recuperar',
+      icon: 'warning',
+      buttons: ['Calcelar', 'Borrar'],
+      dangerMode: true
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        this.afs.collection('areas').doc(area._id).delete()
+        .then(resp => {
+          sweetAlert ('Datos borrados', `Los datos del area ${ area.area } se borraron correctamente`, 'success');
+        })
+        .catch( err => {
+          sweetAlert ('Los datos no se borraron', `Los datos del area ${ area.area } no se borraron`, 'warning');
+        });
+      }
+    });
   }
 
   // =====================================================================
@@ -51,7 +62,14 @@ export class AreasService {
   createArea( area: Area ) {
     const id = this.afs.createId();
     area._id = id;
-    return this.afs.collection('areas').doc(id).set(area);
+    this.afs.collection('areas').doc(id).set(area)
+    .then( (resp: any) => {
+      sweetAlert('Área registrada',
+        `El área ${area.area} se creó correctamente`,
+        'success');
+      this.router.navigate([`area/${area._id}`]);
+    })
+    .catch(err => console.log(err));
   }
 
   // =====================================================================

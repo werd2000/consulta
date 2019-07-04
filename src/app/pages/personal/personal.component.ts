@@ -115,6 +115,8 @@ export class PersonalComponent implements OnInit {
     this.router.navigate(['/empleado/editar/' + empleado._id]);
   }
 
-  eliminar(empleado: EmpleadoProfile) {}
+  eliminar(empleado: EmpleadoProfile) {
+    this.personalService.deleteProfesional(empleado);
+  }
 
 }

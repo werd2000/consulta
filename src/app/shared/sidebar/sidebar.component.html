@@ -15,7 +15,7 @@
         Profesionales
     </a>
 
-    <a mat-list-item href="#" routerLinkActive="active">
+    <a mat-list-item [routerLink]="['/turnos']" routerLinkActive="active">
         <mat-icon matListIcon>calendar_today</mat-icon>
         Turnos
     </a>
@@ -29,12 +29,12 @@
         Usuarios
     </a>
 
-    <a mat-list-item href="#" routerLinkActive="active">
+    <a mat-list-item [routerLink]="['/areas']" routerLinkActive="active">
         <mat-icon matListIcon>business_center</mat-icon>
         Áreas
     </a>
 
-    <a mat-list-item href="#">
+    <a mat-list-item [routerLink]="['/tipo-contactos']">
         <mat-icon matListIcon>settings_cell</mat-icon>
         Tipo Contactos
     </a>

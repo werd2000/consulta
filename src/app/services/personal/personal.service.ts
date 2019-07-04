@@ -26,7 +26,8 @@ export class PersonalService {
   // Obtiene la lista de profesionales
   // ======================================================
   getEmpleados() {
-    return this.empleadosCollection.valueChanges();
+    // return this.empleadosCollection.valueChanges();
+    return this.afs.collection('profesionales', ref => ref.orderBy('apellido')).valueChanges();
   }
 
   getEmpleadolId(id: string) {
@@ -36,15 +37,25 @@ export class PersonalService {
   // =====================================================================
   // Marca como borrado un profesional por id
   // =====================================================================
-  borrarProfesional(profesional: EmpleadoProfile) {
-    profesional.borrado = true;
-    this.afs.collection('profesionales').doc(profesional._id).set(profesional)
-      .then(resp => {
-        sweetAlert ('Datos borrados', `Los datos del profesional ${ profesional.apellido } se borraron correctamente`, 'success');
-      })
-      .catch( err => {
-        sweetAlert ('Los datos no se borraron', `Los datos del profesional ${ profesional.apellido } no se borraron`, 'warning');
-      });
+  deleteProfesional(profesional: EmpleadoProfile) {
+    sweetAlert({
+      title: 'Atención, está por borrar datos',
+      text: 'Una vez borrados, no se podrán recuperar',
+      icon: 'warning',
+      buttons: ['Calcelar', 'Borrar'],
+      dangerMode: true
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        this.afs.collection('profesionales').doc(profesional._id).delete()
+          .then(resp => {
+            sweetAlert ('Datos borrados', `Los datos del profesional ${ profesional.apellido } se borraron correctamente`, 'success');
+          })
+          .catch( err => {
+            sweetAlert ('Los datos no se borraron', `Los datos del profesional ${ profesional.apellido } no se borraron`, 'warning');
+          });
+      }
+    });
   }
 
   // =====================================================================
@@ -53,7 +64,14 @@ export class PersonalService {
   createEmpleado( profesional: EmpleadoProfile ) {
     const id = this.afs.createId();
     profesional._id = id;
-    return this.afs.collection('profesionales').doc(id).set(profesional);
+    this.afs.collection('profesionales').doc(id).set(profesional)
+      .then( (resp: any) => {
+        sweetAlert('Personal registrado',
+          `El personal ${profesional.apellido} ${profesional.nombre} se creó correctamente`,
+          'success');
+        this.router.navigate([`empleado/${profesional._id}`]);
+      })
+      .catch(err => console.log(err));
   }
 
   // =====================================================================

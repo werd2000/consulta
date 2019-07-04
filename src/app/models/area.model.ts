@@ -1,8 +1,8 @@
 export class Area {
 
-    area?: string;
-    observaciones?: string;
-    _id?: string;
-
-    constructor() { }
+    constructor(
+        public area = '',
+        public observaciones = '',
+        public _id = ''
+    ) { }
 }

@@ -21,7 +21,7 @@ export class SubirArchivoService {
   ) { }
 
   // subirArchivo( archivo: File, tipo: string, objeto: Usuario | PacienteProfile | EmpleadoProfile | Empresa) {
-  subirArchivo( archivo: File, tipo: string, objeto: PersonaInterface | Empresa) {
+  subirArchivo( archivo: File, tipo: string, objeto: PersonaInterface | Usuario | Empresa) {
     const nombreCortado = archivo.name.split('.');
     const extension = nombreCortado[nombreCortado.length - 1];
 
@@ -76,7 +76,7 @@ export class SubirArchivoService {
   }
 
   // private guardarImagen(tipo: string, objeto: Usuario | PacienteProfile | EmpleadoProfile | Empresa) {
-  private guardarImagen(tipo: string, objeto: PersonaInterface | Empresa) {
+  private guardarImagen(tipo: string, objeto: PersonaInterface | Usuario | Empresa) {
     const aGuardar = JSON.stringify(objeto);
     const persona = JSON.parse(aGuardar);
     switch (tipo) {

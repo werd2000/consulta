@@ -120,7 +120,6 @@ export class EmpleadoPrincipalComponent implements OnInit {
       empleado.observaciones = this.forma.value.observaciones || '';
 
       if (this.empleado._id === undefined) {
-        console.log(empleado);
         this.empleadoService.createEmpleado(empleado);
       } else {
         empleado._id = this.empleado._id;

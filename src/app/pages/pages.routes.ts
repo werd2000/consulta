@@ -8,6 +8,13 @@ import { UsuariosComponent } from './usuario/usuarios.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { PersonalComponent } from './personal/personal.component';
 import { EmpleadoComponent } from './personal/empleado.component';
+import { AreasComponent } from './areas/areas.component';
+import { AreaComponent } from './areas/area.component';
+import { TipoContactosComponent } from './tipo-contacto/tipo-contactos.component';
+import { TipoContactoComponent } from './tipo-contacto/tipo-contacto.component';
+import { TurnosComponent } from './turnos/turnos.component';
+import { AddTurnoComponent } from './turnos/add-turno.component';
+
 
 const PAGESROUTES: Routes = [
     {
@@ -44,6 +51,20 @@ const PAGESROUTES: Routes = [
             { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Lista de usuarios' } },
             { path: 'usuario/ver/:id', component: UsuarioComponent, data: { titulo: 'Ver usuario' } },
             { path: 'usuario/editar/:id', component: UsuarioComponent, data: { titulo: 'Editar usuario' } },
+
+            { path: 'areas', component: AreasComponent, data: { titulo: 'Áreas de servicio' } },
+            { path: 'area/:id', component: AreaComponent, data: { titulo: 'Nueva área' } },
+            { path: 'area/ver/:id', component: AreaComponent, data: { titulo: 'Ver área' } },
+            { path: 'area/editar/:id', component: AreaComponent, data: { titulo: 'Editar área' } },
+
+            { path: 'tipo-contactos', component: TipoContactosComponent, data: { titulo: 'Administración de contactos' } },
+            { path: 'tipo-contacto/:id', component: TipoContactoComponent, data: { titulo: 'Edición de contactos' } },
+            { path: 'tipo-contacto/ver/:id', component: TipoContactoComponent, data: { titulo: 'Edición de contactos' } },
+            { path: 'tipo-contacto/editar/:id', component: TipoContactoComponent, data: { titulo: 'Edición de contactos' } },
+
+            { path: 'turnos', component: TurnosComponent, data: { titulo: 'Turnos' } },
+            { path: 'turno/:id', component: AddTurnoComponent, data: { titulo: 'Turnos' } },
+
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     },
