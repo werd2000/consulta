@@ -7,7 +7,7 @@ import { EmpleadoProfile } from 'src/app/models/empleado.model';
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html',
-  styleUrls: ['./personal.component.css']
+  // styleUrls: ['./personal.component.css']
 })
 export class PersonalComponent implements OnInit {
 

@@ -137,12 +137,6 @@ export class EmpleadoPrincipalComponent implements OnInit {
     this.location.back();
   }
 
-  imprimirEmpleado() {
-    this.printService.titulo = 'Datos del Personal';
-    this.printService.crearFichaPersonal(this.empleado);
-    this.printService.imprimir();
-  }
-
   controlFechaNac(empleado) {
     if (this.forma.value.fecha_nac) {
       if ( moment.isMoment(this.forma.value.fecha_nac)) {

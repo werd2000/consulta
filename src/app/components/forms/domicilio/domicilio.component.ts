@@ -47,7 +47,7 @@ export class DomicilioComponent implements OnInit {
         '',
         0,
         0);
-    } else {
+    } else {      
       this.domicilio = this.persona.domicilio;
     }
     this.crearFormulario();
@@ -61,7 +61,7 @@ export class DomicilioComponent implements OnInit {
         }
         ),
       casa: new FormControl(
-        { value: this.domicilio.casa_nro,
+        { value: this.domicilio.casa,
           disabled: this.ver
         }
         ),

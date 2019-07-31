@@ -2,13 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { PacienteService, PrintService, ExportPdfService, CopyService, CsvService } from 'src/app/services/service.index';
-// import { PacienteProfile } from 'src/app/models/paciente.model';
-
 
 @Component({
   selector: 'app-pacientes',
   templateUrl: './pacientes.component.html',
-  styleUrls: ['./pacientes.component.css']
 })
 export class PacientesComponent implements OnInit {
 
@@ -98,6 +95,10 @@ export class PacientesComponent implements OnInit {
 
   eliminar(paciente) {
     this.pacienteService.deletePaciente(paciente);
+  }
+
+  verTurnos(paciente) {
+    this.router.navigate(['/turnos/paciente/' + paciente._id]);
   }
 
 }

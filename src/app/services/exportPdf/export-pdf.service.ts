@@ -107,6 +107,54 @@ export class ExportPdfService {
     }
   }
 
+  crearListaTurnosPaciente(lista: any) {
+    this.doc.setFontSize(10);
+    this.doc.line(20, 49, 190, 49);
+    this.doc.text('Nº', 20, 55);
+    this.doc.text('Fecha', 28, 55);
+    this.doc.text('Área', 50, 55);
+    this.doc.text('Profesional', 90, 55);
+    this.doc.text('Duración', 150, 55);
+    this.doc.text('Estado', 170, 55);
+    this.doc.line(20, 58, 190, 58);
+    this.doc.setFontStyle('normal');
+    let linea = 65;
+    let nro = 1;
+    for (const item of lista) {
+      this.doc.text(nro.toString(), 20, linea.toString());
+      this.doc.text(item.fechaInicio, 28, linea.toString());
+      this.doc.text(item.area, 50, linea.toString());
+      this.doc.text(item.profesional.apellido + ' ' + item.profesional.nombre, 90, linea.toString());
+      this.doc.text(item.duracion + '', 150, linea.toString());
+      this.doc.text(item.estado + '', 170, linea.toString());
+      linea += 10;
+      nro += 1;
+    }
+  }
+
+  crearListaTurnosProfesional(lista) {
+    this.doc.setFontSize(10);
+    this.doc.line(20, 49, 190, 49);
+    this.doc.text('Nº', 20, 55);
+    this.doc.text('Fecha', 28, 55);
+    this.doc.text('Paciente', 55, 55);
+    this.doc.text('Duración', 118, 55);
+    this.doc.text('Estado', 140, 55);
+    this.doc.line(20, 58, 190, 58);
+    this.doc.setFontStyle('normal');
+    let linea = 65;
+    let nro = 1;
+    for (const item of lista) {
+      this.doc.text(nro.toString(), 20, linea.toString());
+      this.doc.text(item.fechaInicio, 28, linea.toString());
+      this.doc.text(item.paciente.apellido, 55, linea.toString());
+      this.doc.text(item.duracion + '', 118, linea.toString());
+      this.doc.text(item.estado + '', 140, linea.toString());
+      linea += 10;
+      nro += 1;
+    }
+  }
+
   guardar(nombreArchivo: string) {
     this.doc.save( nombreArchivo);
   }

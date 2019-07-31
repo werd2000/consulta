@@ -63,7 +63,7 @@ export class TurnosService {
   // =====================================================================
   // Busca turnos por un término de búsqueda
   // =====================================================================
-  buscarTurnos(campo: string, termino: string ) {
+  searchTurnos(campo: string, termino: string ) {
     return this.afs.collection<Turno>(
       'turnos', ref => ref.where(campo, '==', termino)
     ).valueChanges();

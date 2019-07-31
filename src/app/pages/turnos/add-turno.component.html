@@ -11,7 +11,7 @@
               <mat-form-field>
                 <input type="text" matInput formControlName="idPaciente" [matAutocomplete]="auto" placeholder="Paciente">
               </mat-form-field>
-              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="mostrarNombrePaciente">
                 <mat-option *ngFor="let paciente of pacientesConFiltro | async" [value]="paciente">
                     {{ paciente.apellido }} {{ paciente.nombre }}
                 </mat-option>

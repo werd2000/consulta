@@ -4,7 +4,7 @@ export class Domicilio implements DomicilioInterface {
 
     constructor(
         public calle = '',
-        public casa_nro = '',
+        public casa = '',
         public barrio = '',
         public ciudad = '',
         public cp = '',
@@ -15,7 +15,7 @@ export class Domicilio implements DomicilioInterface {
     ) { }
 
     getDomicilioCompleto() {
-        return `${ this.calle } ${ this.casa_nro}`;
+        return `${ this.calle } ${ this.casa}`;
     }
 
 }

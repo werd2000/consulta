@@ -1,14 +1,19 @@
+import { Usuario } from './usuario.interface';
+import { PacienteInterface } from './paciente.interface';
+import { EmpleadoInterface } from './empleado.interface';
 
 export class TurnoInterface {
 
     area: string;
-    idProfesional: string;
+    Profesional: EmpleadoInterface;
     fechaInicio: string;
     horaInicio: string;
     fechaFin: string;
     horaFin: string;
+    duracion: string;
     idPaciente: string;
-    creadoPor: string;
+    paciente: PacienteInterface;
+    creadoPor: Usuario;
     creacion: string;
     actualizado: string;
     estado: string;

@@ -38,6 +38,10 @@ body {
     width: 100%;
 }
 
+.w-90 {
+    width: 90% !important;
+}
+
 .w-75 {
     width: 74% !important;
 }
@@ -74,8 +78,12 @@ body {
     margin: auto;
 }
 
+.m-1px {
+    margin: 1px;
+}
+
 .mr-2px {
-    margin-right: 2px;
+    margin-right: 2px !important;
 }
 
 .ml-5px {
@@ -157,6 +165,34 @@ body {
 
 .turnos .mat-card-actions {
     padding: 0px !important;
+    /* margin-left: -15px !important; */
+    position: absolute;
+    bottom: 9px;
+}
+
+.turnos .mat-card-content{
+    margin: 0px !important;
+    font-size: .95em;
+    padding: 2px;
+    display: flex;
+}
+
+.mat-card-actions .menu-more{
+    height: 30px;
+    bottom: 5px;
+}
+
+.turnos-header .menu-turno {
+    height: 30px;
+    width: 30px;
+    bottom: 5px;
+    left: -24px;
+}
+
+.btn-menu-turno {
+    height: 30px !important;
+    width: 30px !important;
+    line-height: 30px !important;
 }
 
 .turno-column {
@@ -166,7 +202,7 @@ body {
     padding: 0;
     vertical-align: middle;
     float: left;
-    min-height: 100px;
+    min-height: 1260px;
     /* display: flex; */
     justify-content: center;
     align-items: baseline;
@@ -175,7 +211,8 @@ body {
 .turno-column-head {
     text-align: center;
     width: 100%;
-    background-color: #aaaaaa;
+    background-color: #320b86;
+    color: #ffffff;
     min-height: 50px;
     display: flex;
     justify-content: center;
@@ -194,10 +231,15 @@ body {
 }
 
 .mat-card-turnos {
-    padding: 8px !important;
+    padding: 0px !important;
     margin-top: 1px;
-    /* background-color: #e2e2e2 !important; */
-    /* border: 1px solid #9e9e9e; */
+}
+
+.turnos-header {
+    padding: 3px !important;
+    border-top-left-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+    height: 40px;
 }
 
 .card-title-turnos {
@@ -210,6 +252,7 @@ body {
 
 .mat-card-content p {
     font-size: .9em;
+    margin: 0px;
 }
 
 .card-img-turnos {
@@ -217,8 +260,18 @@ body {
     height: 30px !important;
 }
 
+.separador-turnos {
+    position: relative;
+    top: 500px;
+    background-color: #320b86;
+    height: 1px;
+    width: 100%;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+}
+
 .turno-programado {
-   background-color: #EBF5FB !important;
+   background-color: #673ab7 !important;
+   color: #ffffff;
    /* border: 1px solid #b0b8e4 !important; */
 }
 
@@ -228,19 +281,20 @@ body {
 }
 
 .turno-demorado {
-    background-color: #D2B4DE !important;
+    background-color: #c8a600 !important;
 }
 
 .turno-cancelo-paciente {
-    background-color: #F2D7D5 !important;
+    background-color: #ffd740 !important;
 }
 
 .turno-cancelo-profesional {
-    background-color: #E6B0AA !important;
+    background-color: #ffff74 !important;
 }
 
 .turno-realizado {
-    background-color: #7DCEA0 !important;
+    background-color: #320b86 !important;
+    color: #ffffff;
     /* border: #7DCDA0 1px solid; */
 
 }
@@ -249,26 +303,15 @@ body {
     color: #444444;
 }
 
+.text-right {
+    text-align: right !important;
+}
+
 .pointer {
     cursor: pointer;
 }
-
-/* .turnos table {
-    width: 100%;
-    box-sizing: border-box;
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-spacing: 0;
+/* CAJAS */
+.box-flex {
+    display: flex;
+    justify-content: space-between;
 }
-
-.turnos-head,
-.turnos-head-container {
-    border-color: #ddd;
-}
-
- .turnos td {
-     border-style: solid;
-     border-width: 1px;
-     padding: 0;
-     vertical-align: middle;
-} */

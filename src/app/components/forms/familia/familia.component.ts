@@ -1,11 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Familia } from 'src/app/models/familia.model';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { RELACIONES } from 'src/app/config/config';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { PrintService, FamiliaService } from 'src/app/services/service.index';
-import { PersonaInterface } from '../../../interfaces/persona.interface';
 
 @Component({
   selector: 'app-familia',
@@ -17,7 +16,6 @@ export class FamiliaComponent implements OnInit {
   @Input() persona;
   @Input() tipo: string;
   @Input() modo: string;
-  @Output() imprimir: EventEmitter<PersonaInterface>;
   familia: Familia;
   listaFamiliares: Familia[] = [];
   formaFamilia: FormGroup;
@@ -30,9 +28,7 @@ export class FamiliaComponent implements OnInit {
     public location: Location,
     public printService: PrintService,
     public familiaService: FamiliaService,
-  ) {
-    this.imprimir = new EventEmitter();
-  }
+  ) {  }
 
   ngOnInit() {
     if (this.modo === 'ver') {
@@ -98,10 +94,6 @@ export class FamiliaComponent implements OnInit {
 
   editarFamilia() {
     this.router.navigate(['/' + this.tipo + '/editar/' + this.persona._id + '/3']);
-  }
-
-  imprimirPaciente() {
-    this.imprimir.emit(this.persona);
   }
 
 }

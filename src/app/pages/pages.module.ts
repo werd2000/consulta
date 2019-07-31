@@ -36,6 +36,9 @@ import { TipoContactosComponent } from './tipo-contacto/tipo-contactos.component
 import { TipoContactoComponent } from './tipo-contacto/tipo-contacto.component';
 import { TurnosComponent } from './turnos/turnos.component';
 import { AddTurnoComponent } from './turnos/add-turno.component';
+import { TurnosPacienteComponent } from './pacientes/turnos-paciente.component'
+import { CardTurnoComponent } from './turnos/card-turno.component';
+import { PersonalTurnosComponent } from './personal/personal-turnos.component';
 
 
 @NgModule({
@@ -70,7 +73,10 @@ import { AddTurnoComponent } from './turnos/add-turno.component';
     TipoContactosComponent,
     TipoContactoComponent,
     TurnosComponent,
-    AddTurnoComponent
+    AddTurnoComponent,
+    TurnosPacienteComponent,
+    CardTurnoComponent,
+    PersonalTurnosComponent,
   ],
   exports: [
     // PagesComponent,
@@ -90,7 +96,9 @@ import { AddTurnoComponent } from './turnos/add-turno.component';
     TipoContactosComponent,
     TipoContactoComponent,
     TurnosComponent,
-    // AddTurnoComponent
+    // AddTurnoComponent,
+    TurnosPacienteComponent,
+    CardTurnoComponent,
   ],
   entryComponents: [
     AddTurnoComponent

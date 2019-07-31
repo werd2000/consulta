@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EmpleadoProfile } from 'src/app/models/empleado.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonalService } from '../../services/personal/personal.service';
@@ -6,15 +6,12 @@ import { UsuarioService, PrintService } from 'src/app/services/service.index';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { Usuario } from 'src/app/models/usuario.model';
-import { Domicilio } from 'src/app/models/domicilio.model';
-import { Profesion } from 'src/app/models/profesion.model';
 
 @Component({
   selector: 'app-empleado',
   templateUrl: './empleado.component.html',
-  styleUrls: ['./empleado.component.css']
 })
-export class EmpleadoComponent implements OnInit {
+export class EmpleadoComponent implements OnInit, OnDestroy {
 
   public cargando: boolean;
   public empleado: EmpleadoProfile;
@@ -34,7 +31,7 @@ export class EmpleadoComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.url.subscribe( p => {
-      this.modo = p[1].path;
+      this.modo = p[1].path;      
     });
     this.activatedRoute.params.subscribe( params => {
       this.cargando = true;
@@ -68,6 +65,12 @@ export class EmpleadoComponent implements OnInit {
         }
       this.cargando = false;
     });
+  }
+
+  ngOnDestroy() {
+    this.suscription.forEach( elem => {
+      elem.unsubscribe();
+    })
   }
 
   cargarEmpleado( id: string ) {
@@ -120,10 +123,23 @@ export class EmpleadoComponent implements OnInit {
     this.tabActual = evento.index;
   }
 
-  imprimir(empleado: EmpleadoProfile) {
-    this.printService.titulo = 'Datos del Empleado';
+  imprimirEmpleado() {    
+    this.printService.titulo = 'Datos del Personal';
     this.printService.crearFichaPersonal(this.empleado);
     this.printService.imprimir();
+  }
+
+  editarEmpleado() {
+    this.route.navigate(['/empleado/editar/' + this.empleado._id]);
+  }
+
+  verEmpleado() {
+    this.route.navigate(['/empleado/ver/' + this.empleado._id]);
+  }
+  
+
+  verTurnos() {
+    this.route.navigate(['/turnos/personal/' + this.empleado._id])    
   }
 
 }

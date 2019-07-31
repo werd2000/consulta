@@ -117,15 +117,14 @@ export class PacientePrincipalComponent implements OnInit {
       paciente.img = this.paciente.img;
       paciente.actualizadoPor = this.usuarioService.usuario._id;
       paciente.actualizadoEl = moment().format('YYYY-MM-DD');
-      paciente.domicilio = this.paciente.domicilio;
       paciente.contactos = this.paciente.contactos || null;
       paciente.familiares = this.paciente.familiares || null;
       paciente.ssocial = this.paciente.ssocial || null;
-
+      
       if (this.paciente._id === undefined) {
-        console.log(paciente);
         this.pacienteService.createPaciente(paciente);
       } else {
+        paciente.domicilio = this.paciente.domicilio;
         paciente._id = this.paciente._id;
         this.pacienteService.updatePaciente(paciente);
       }

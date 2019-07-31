@@ -14,6 +14,8 @@ import { TipoContactosComponent } from './tipo-contacto/tipo-contactos.component
 import { TipoContactoComponent } from './tipo-contacto/tipo-contacto.component';
 import { TurnosComponent } from './turnos/turnos.component';
 import { AddTurnoComponent } from './turnos/add-turno.component';
+import { TurnosPacienteComponent } from './pacientes/turnos-paciente.component';
+import { PersonalTurnosComponent } from './personal/personal-turnos.component';
 
 
 const PAGESROUTES: Routes = [
@@ -48,6 +50,7 @@ const PAGESROUTES: Routes = [
             { path: 'empleado/ver/:id', component: EmpleadoComponent, data: { titulo: 'Ver empleado' } },
             { path: 'empleado/editar/:id/:tab', component: EmpleadoComponent, data: { titulo: 'Edición de empleado' } },
             { path: 'empleado/editar/:id', component: EmpleadoComponent, data: { titulo: 'Edición de empleado' } },
+
             { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Lista de usuarios' } },
             { path: 'usuario/ver/:id', component: UsuarioComponent, data: { titulo: 'Ver usuario' } },
             { path: 'usuario/editar/:id', component: UsuarioComponent, data: { titulo: 'Editar usuario' } },
@@ -64,6 +67,9 @@ const PAGESROUTES: Routes = [
 
             { path: 'turnos', component: TurnosComponent, data: { titulo: 'Turnos' } },
             { path: 'turno/:id', component: AddTurnoComponent, data: { titulo: 'Turnos' } },
+            
+            { path: 'turnos/paciente/:id', component: TurnosPacienteComponent, data: { titulo: 'Turnos del paciente' } },
+            { path: 'turnos/personal/:id', component: PersonalTurnosComponent, data: { titulo: 'Turnos del personal' } },
 
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]

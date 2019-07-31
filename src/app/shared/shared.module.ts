@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MaterialModule } from '../material.module';
+import { BtnVolverComponent } from './btn/btn-volver/btn-volver.component';
 
 
 @NgModule({
@@ -18,11 +19,13 @@ import { MaterialModule } from '../material.module';
     // BreadcrumbsComponent,
     HeaderComponent,
     SidebarComponent,
+    BtnVolverComponent
   ],
   exports: [
     // BreadcrumbsComponent,
     HeaderComponent,
     SidebarComponent,
+    BtnVolverComponent
   ]
 })
 export class SharedModule { }

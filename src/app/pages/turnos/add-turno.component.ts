@@ -38,7 +38,7 @@ export class AddTurnoComponent implements OnInit {
   
   constructor(
     public dialogRef: MatDialogRef<AddTurnoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Turno,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public modalTurnoService: ModalTurnoService,
     public pacienteService: PacienteService,
     public areasService: AreasService,
@@ -53,10 +53,10 @@ export class AddTurnoComponent implements OnInit {
     this.cargarPacientes();
     this.cargarAreas();
     this.cargarProfesionales();
-
-    const fechaHoy = moment().format('YYYY-MM-DD');    
-
-    if (!this.data) {
+    
+    const fechaHoy = this.data;
+    
+    if (!this.data || typeof this.data === 'string') {
       this.turno = new Turno(
         '',
         '',
@@ -74,7 +74,7 @@ export class AddTurnoComponent implements OnInit {
     }    
 
     this.forma = new FormGroup({
-      idPaciente: new FormControl(this.turno.idPaciente, Validators.required),
+      idPaciente: new FormControl(this.data.paciente, Validators.required),
       fechaInicio: new FormControl(this.turno.fechaInicio, Validators.required),
       horaInicio: new FormControl(this.turno.horaInicio, Validators.required),
       fechaFin: new FormControl(this.turno.fechaFin, Validators.required),
@@ -102,7 +102,7 @@ export class AddTurnoComponent implements OnInit {
     }
   }
 
-  displayFn(paciente?: PacienteProfile): string | undefined {
+  mostrarNombrePaciente(paciente?: PacienteProfile): string | undefined {
     return paciente ? paciente.apellido + ' ' + paciente.nombre : undefined;
   }
 
@@ -131,8 +131,7 @@ export class AddTurnoComponent implements OnInit {
     this.dialogRef.close();    
   }
 
-  guardarTurno() {
-    
+  guardarTurno() {    
     const turno = this.forma.value;
     turno.creacion = moment().format('YYYY-MM-DD');
     turno.actualizado = moment().format('YYYY-MM-DD');
@@ -152,7 +151,7 @@ export class AddTurnoComponent implements OnInit {
     let arrayHora = this.forma.controls.horaInicio.value.split(':');
     let hora = parseInt(arrayHora[0]);
     let min = parseInt(arrayHora[1]);
-    let nuevoMin = min + 30;
+    let nuevoMin = min + 40;
     let nuevaHora = hora;
     if (nuevoMin >= 60) {
       nuevoMin = nuevoMin - 60;

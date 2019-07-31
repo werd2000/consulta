@@ -7,6 +7,7 @@ import { PrintPersonalService } from './print.personal.service';
 import { PrintPacienteService } from './print.paciente.service';
 import { PrintAreaService } from './print.area.service';
 import { Area } from 'src/app/models/area.model';
+import { TurnoInterface } from 'src/app/interfaces/turno.interface';
 declare const $;
 
 @Injectable({
@@ -55,6 +56,10 @@ export class PrintService {
     this.lista = this.printPacienteService.crearFichaPaciente(paciente);
   }
 
+  listaTurnosPaciente( paciente: PacienteProfile, turnos: TurnoInterface[] ) {
+    this.lista = this.printPacienteService.crearListaTurnosPaciente(paciente, turnos);
+  }
+
   // PERSONAL
   crearListaPersonal(encabezado: string[], listado: EmpleadoProfile[]) {
     this.crearEncabezadoLista(encabezado);
@@ -64,6 +69,10 @@ export class PrintService {
 
   crearFichaPersonal( empleado: EmpleadoProfile ) {
     this.lista = this.printPersonalService.crearFichaPersonal(empleado);
+  }
+
+  listaTurnosPersonal( personal: EmpleadoProfile, turnos: TurnoInterface[] ) {    
+    this.lista = this.printPersonalService.crearListaTurnosPersonal(personal, turnos);
   }
 
   // Areas

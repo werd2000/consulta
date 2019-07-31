@@ -12,7 +12,7 @@ import { Domicilio } from 'src/app/models/domicilio.model';
 @Component({
   selector: 'app-paciente',
   templateUrl: './paciente.component.html',
-  styleUrls: ['./paciente.component.css']
+  // styleUrls: ['./paciente.component.css']
 })
 export class PacienteComponent implements OnInit {
 
@@ -119,10 +119,14 @@ export class PacienteComponent implements OnInit {
     this.tabActual = evento.index;
   }
 
-  imprimir(paciente: PacienteProfile) {
+  imprimirPaciente() {
     this.printService.titulo = 'Datos del Paciente';
     this.printService.crearFichaPaciente(this.paciente);
     this.printService.imprimir();
+  }
+
+  verTurnos() {
+    this.route.navigate(['/turnos/paciente/' + this.paciente._id])    
   }
 
 }
