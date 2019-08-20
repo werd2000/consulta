@@ -2,12 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PersonalService, UsuarioService, TurnosService, PacienteService, PrintService, ExportPdfService } from 'src/app/services/service.index';
+import { PersonalService, UsuarioService, TurnosService, PacienteService, PrintService, ExportPdfService, CsvService } from 'src/app/services/service.index';
 import { EmpleadoProfile } from 'src/app/models/empleado.model';
 import { mergeMap } from 'rxjs/operators';
 import { Usuario } from 'src/app/models/usuario.model';
 import * as moment from 'moment';
 import { PacienteProfile } from 'src/app/models/paciente.model';
+import { TurnoInterface } from 'src/app/interfaces/turno.interface';
 
 @Component({
   selector: 'app-personal-turnos',
@@ -40,7 +41,8 @@ export class PersonalTurnosComponent implements OnInit {
     public turnosService: TurnosService,
     public pacienteService: PacienteService,
     public printService: PrintService,
-    public exportPdfService: ExportPdfService
+    public exportPdfService: ExportPdfService,
+    public csvService: CsvService
   ) { }
 
   ngOnInit() {
@@ -136,6 +138,23 @@ export class PersonalTurnosComponent implements OnInit {
     this.exportPdfService.crearListaTurnosProfesional(this.turnosProfesional);
     this.exportPdfService.guardar('Turnos_de_' + this.personal.apellido + '.pdf');
     return;
+  }
+
+  csvLista() {
+    this.csvService.title = 'Turnos de ' + this.personal.getNombreCompleto();
+    this.csvService.encabezado = ['Fecha', 'Paciente', 'Duración', 'Estado']
+    this.csvService.data = this.turnosProfesional.map(this.turnoCsv);
+    this.csvService.exportarDatos();
+    this.csvService.exportar();
+  }
+
+  turnoCsv (turno, index, array) {
+    return [
+      turno.fechaInicio,
+      turno.paciente.apellido + ' ' + turno.paciente.nombre,
+      turno.duracion,
+      turno.estado
+    ];  
   }
 
 }

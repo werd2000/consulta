@@ -129,4 +129,12 @@ export class PacienteComponent implements OnInit {
     this.route.navigate(['/turnos/paciente/' + this.paciente._id])    
   }
 
+  editarPaciente() {
+    this.route.navigate(['/paciente/editar/' + this.paciente._id]);
+  }
+
+  verPaciente() {
+    this.route.navigate(['/paciente/ver/' + this.paciente._id]);
+  }
+
 }

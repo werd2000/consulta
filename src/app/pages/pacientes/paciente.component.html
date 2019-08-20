@@ -18,6 +18,16 @@
                 print
             </mat-icon>
         </button>
+        <button *ngIf="modo === 'ver'" mat-icon-button matTooltip="Editar" (click)="editarPaciente()">
+            <mat-icon aria-hidden="false" aria-label="Editar icon">
+                edit
+            </mat-icon>
+        </button>
+        <button *ngIf="modo === 'editar'" mat-icon-button matTooltip="Ver" (click)="verPaciente()">
+            <mat-icon aria-hidden="false" aria-label="Ver icon">
+                remove_red_eye
+            </mat-icon>
+        </button>
         <button mat-icon-button matTooltip="Informes">
             <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Informes icon">
                 <i class="fas fa-file-prescription paciente-tab-icon"></i>

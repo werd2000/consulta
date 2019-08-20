@@ -75,8 +75,12 @@ export class TurnosFunctions {
           top = top - (duracion * 2 * index);
           array[index].top = top  + 'px';
         }
-        console.log('Hora de inicio',turno.horaInicio);
-        console.log(top);
+        
+        if (turno.horaInicio === '09:20') {
+          console.log("dif entre inicio y entrada", min);
+          console.log('Hora de inicio',turno.horaInicio);
+          console.log('top', top);
+        }
         if (top >= 500) {
           top = top - 300;
         }

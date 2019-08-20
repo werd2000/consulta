@@ -43,20 +43,38 @@
     <mat-card-content>
 
       <div class="turnos">
-        <div *ngFor="let column of columns" 
-            class="turno-column"
-            [ngStyle]="{'width': widthColumn}"
-            [id]="column.id">
-          <div class="turno-column-head">
-            <span>{{ column.head }}</span>
+        <div class="encabezado-turnos" id="encabezado-turnos">
+          <div *ngFor="let column of columns" 
+              class="turno-column turno-column-encabezado"
+              [ngStyle]="{'width': widthColumnE}"
+              [id]="column.id">
+            <mat-card>
+                <mat-card-header class="p-3px">
+                    <img mat-card-avatar [src]="column.head.img | imagen" class="card-img-turnos">
+                    <mat-card-title *ngIf="column.head" class="card-title-turnos">
+                      {{ column.head.apellido }} {{ column.head.nombre }}
+                    </mat-card-title>
+                </mat-card-header>
+            </mat-card>
           </div>
+        </div>
+        
+        <div class="detalle-turnos" id="detalle-turnos">
+            <div *ngFor="let column of columns" 
+            class="turno-column turno-column-detalle"
+            [ngStyle]="{'width': widthColumnD}"
+            [id]="column.id">
+              <div *ngFor="let t of column.turnos">
+                  <app-card-turno [turno]="t" (actualizar)="cargarTurnos($event)"></app-card-turno>
+              </div>
+            </div>
+        </div>
 
-          <div class="separador-turnos"></div>
+          <!-- <div class="separador-turnos"></div>
           <div *ngFor="let t of column.turnos">
             <app-card-turno [turno]="t" (actualizar)="cargarTurnos($event)"></app-card-turno>
-          </div>
+          </div> -->
           
-        </div>
         
       </div>
     </mat-card-content>

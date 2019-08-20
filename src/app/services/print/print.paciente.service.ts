@@ -126,8 +126,6 @@ export class PrintPacienteService {
       html += '<tr>';
       html += '<td>País:</td>';
       html += '<td><h5>' + paciente.domicilio.pais + '</h5></td>';
-      html += '<td>Lat - Lng:</td>';
-      html += '<td><h5>' + paciente.domicilio.lat + - + paciente.domicilio.lng + '</h5></td>';
       html += '</tr>';
     } else {
       html += '<td colspan="3">No hay datos aún.</td>';

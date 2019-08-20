@@ -103,7 +103,7 @@ export class PacientePrincipalComponent implements OnInit {
           value: this.paciente.estado,
           disabled: this.ver}),
         observaciones: new FormControl({
-          value: this.paciente.observaciones,
+          value: this.paciente.observaciones || null,
           disabled: this.ver})
       });
   }

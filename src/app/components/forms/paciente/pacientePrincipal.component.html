@@ -95,17 +95,6 @@
 
         </mat-card-content>
 
-        <div class="w-100">
-            <button mat-raised-button color="primary" *ngIf="ver" (click)="editarPaciente()" class="w-50 mr-2">
-                <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Editar icon">edit</mat-icon>
-                 Editar
-            </button>
-            <button mat-raised-button color="accent" *ngIf="ver" (click)="imprimirPaciente()" class="w-50">
-                <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Imprimir icon">print</mat-icon>
-                Imprimir
-            </button>
-        </div>
-
     </mat-card>
 
     <mat-card class="foto-principal">
@@ -119,7 +108,6 @@
                 <!-- </label> -->
             </button>
             <input (change)="seleccionImagen($event.target.files[0])" id="fileToUpload" type="file" style="display:none;">
-            <!-- <input (change)="seleccionImagen($event.target.files[0])" type="file" class="mb-3"> -->
             <button mat-raised-button (click)="cambiarImagen()" [disabled]="!imagenSubir" type="button" class="w-100">
                 <i class="fa fa-save"></i>
                 Actualizar foto

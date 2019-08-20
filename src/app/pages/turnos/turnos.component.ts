@@ -22,7 +22,8 @@ export class TurnosComponent implements OnInit, OnDestroy {
 
   cargando: boolean;
   columns = [];
-  widthColumn: string;
+  widthColumnE: string;
+  widthColumnD: string;
   turnos: any;
   suscriptor: Subscription[] = [];
   // horario = ['08:00', '08:30', '09:00', '09:30'];
@@ -70,7 +71,7 @@ export class TurnosComponent implements OnInit, OnDestroy {
                 );                
                 
                 this.columns.push({
-                    head: profesional.apellido + ' ' + profesional.nombre,
+                    head: profesional,
                     campo: profesional.nombre,
                     id: profesional._id,
                     turnos: this.turnos
@@ -78,8 +79,11 @@ export class TurnosComponent implements OnInit, OnDestroy {
               })
             );
         });
-        
-        this.widthColumn = 100 / personal.length + '%';
+
+        let elem = document.getElementById('encabezado-turnos');
+        this.widthColumnE = (elem.offsetWidth / personal.length) + 'px';
+        elem = document.getElementById('detalle-turnos');
+        this.widthColumnD = (elem.offsetWidth / personal.length) - 1 + 'px';
         this.cargando = false;
       })
     );

@@ -34,6 +34,7 @@ body {
     color: blue;
 }
 
+/* WIDTHS */
 .w-100 {
     width: 100%;
 }
@@ -65,7 +66,9 @@ body {
 .w-10 {
     width: 10% !important;
 }
+/* FIN WIDTHS */
 
+/* MARGINS */
 .mr-4 {
     margin-right: 4%;
 }
@@ -93,6 +96,17 @@ body {
 .mb-5 {
     margin-bottom: 5px !important;
 }
+/* FIN MARGINS */
+
+/* PADDINGS */
+.p-1px {
+    padding: 1px !important;
+}
+
+.p-3px {
+    padding: 3px !important;
+}
+/* FIN PADDINGS */
 
 .principal-container {
     display: -webkit-flex;
@@ -160,9 +174,19 @@ body {
     margin-top: 10px !important;
     font-size: 0.9em !important;
     width: 100%;
-    display: flex;
 }
 
+.encabezado-turnos {
+    display: flex;
+    height: 50px;
+    margin-bottom: 2px;
+}
+
+.detalle-turnos {
+    display: flex;
+    height: 950px;
+    background-color: #fafafa;
+}
 .turnos .mat-card-actions {
     padding: 0px !important;
     /* margin-left: -15px !important; */
@@ -200,26 +224,32 @@ body {
     border-width: .5px;
     border-color: #ddd;
     padding: 0;
-    vertical-align: middle;
+    /* vertical-align: middle;
     float: left;
-    min-height: 1260px;
+    min-height: 1260px; */
     /* display: flex; */
-    justify-content: center;
-    align-items: baseline;
+    /* justify-content: center;
+    align-items: baseline; */
+}
+
+.turno-column-encabezado {
+    height: 50px;
+}
+
+.turno-column-encabezado mat-card{
+    background-color: #320b86;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 500;
+    padding: 1px;
+    height: 50px;
 }
 
 .turno-column-head {
-    text-align: center;
     width: 100%;
-    background-color: #320b86;
-    color: #ffffff;
-    min-height: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
-}
-
-.turno-column-head span {
-    font-weight: 500;
 }
 
 .turno-column-data {
