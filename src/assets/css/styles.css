@@ -5,6 +5,52 @@ body {
     font-size: .875rem !important;
 }
 
+.row {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: auto;
+}
+
+[class*=col-] {
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+.col-8 {
+    width: 66.66666667%;
+}
+.col-7 {
+    width: 58.33333333%;
+}
+.col-6 {
+    width: 50%;
+}
+
+.col-5 {
+    width: 41.66666667%;
+}
+
+.col-4 {
+    width: 33.33333333%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-2 {
+    width: 16.66666667%;
+}
+
+.col-1 {
+    width: 8.33333333%;
+}
+
 .basic-container {
     padding: 30px;
 }
@@ -14,7 +60,7 @@ body {
     float: right;
 }
 
-.foto-paciente-sm {
+.foto-sm {
     width: 40px;
 }
 
@@ -32,6 +78,11 @@ body {
 
 .evaluacion {
     color: blue;
+}
+
+[class*=w-] {
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 /* WIDTHS */
@@ -52,7 +103,7 @@ body {
 }
 
 .w-50 {
-    width: 48% !important;
+    width: 50% !important;
 }
 
 .w-33 {
@@ -138,24 +189,24 @@ body {
 }
 
 .foto-perfil {
-    max-width: 100%;
+    width: 100%;
 }
 
 .foto-principal {
     width: 25%;
 }
 
-@media screen and (max-width:640px) {
-    body {
-        font-size: .675rem !important;
-    }
-}
-
 .mat-form-field {
     font-size: 14px;
     width: 100%;
 }
-
+.toolbar-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "titulo-toolbar . botonera";
+    grid-gap: 10px;
+    width: inherit;
+}
 .toolbar-icon {
     padding: 0 14px;
     display: flex;
@@ -174,6 +225,13 @@ body {
     margin-top: 10px !important;
     font-size: 0.9em !important;
     width: 100%;
+    height: 1000px;
+}
+.turnos .ng-star-inserted {
+    width: inherit;
+}
+.turnos app-card-turno {
+    width: inherit;
 }
 
 .encabezado-turnos {
@@ -184,7 +242,7 @@ body {
 
 .detalle-turnos {
     display: flex;
-    height: 950px;
+    height: 100vh;
     background-color: #fafafa;
 }
 .turnos .mat-card-actions {
@@ -195,10 +253,11 @@ body {
 }
 
 .turnos .mat-card-content{
-    margin: 0px !important;
-    font-size: .95em;
+    width: 100%;
     padding: 2px;
-    display: flex;
+    margin: 0;
+    display: block;
+    box-sizing: border-box;
 }
 
 .mat-card-actions .menu-more{
@@ -207,29 +266,35 @@ body {
 }
 
 .turnos-header .menu-turno {
-    height: 30px;
-    width: 30px;
-    bottom: 5px;
-    left: -24px;
+    min-width: 10px;
+    margin: 0;
+    padding: 0;
 }
 
-.btn-menu-turno {
-    height: 30px !important;
-    width: 30px !important;
-    line-height: 30px !important;
+.menu-turno {
+    width: 10px;
+    overflow: hidden;
+}
+
+.menu-turno span {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+  }
+
+.menu-turno span mat-icon {
+    margin: 0;
+    padding: 0;
+    left: -5px;
+    position: relative;
+    box-sizing: border-box;
+    width: 10px;
 }
 
 .turno-column {
-    border-style: solid;
-    border-width: .5px;
-    border-color: #ddd;
+    border: .5px solid #ddd;
     padding: 0;
-    /* vertical-align: middle;
-    float: left;
-    min-height: 1260px; */
-    /* display: flex; */
-    /* justify-content: center;
-    align-items: baseline; */
+    height: 1000px ;
 }
 
 .turno-column-encabezado {
@@ -266,18 +331,32 @@ body {
 }
 
 .turnos-header {
-    padding: 3px !important;
+    /* padding: 3px !important;
     border-top-left-radius: 4px !important;
-    border-top-right-radius: 4px !important;
+    border-top-right-radius: 4px !important; */
     height: 40px;
+}
+
+.turnos-header img {
+    margin: 0;
+    padding: 0;
 }
 
 .card-title-turnos {
     font-size: .9em !important;
+    padding: 0px;
+    font-weight: 600;
+    display: block !important;
+    overflow: hidden;
+    width: 100%;
 }
-
+.mat-card-header .mat-card-title {
+    margin: 0px !important;
+    width: 100%;
+}
 .mat-card-header-text {
-    margin: 0 8px !important;
+    margin: 0 !important;
+    font-size: .9em;
 }
 
 .mat-card-content p {
@@ -288,6 +367,7 @@ body {
 .card-img-turnos {
     width: 30px !important;
     height: 30px !important;
+    align-self: center;
 }
 
 .separador-turnos {
@@ -302,12 +382,10 @@ body {
 .turno-programado {
    background-color: #673ab7 !important;
    color: #ffffff;
-   /* border: 1px solid #b0b8e4 !important; */
 }
 
 .turno-reprogramado {
     background-color: #AED6F1 !important;
-    /* border: 1px solid #df9eea !important */
 }
 
 .turno-demorado {
@@ -325,8 +403,6 @@ body {
 .turno-realizado {
     background-color: #320b86 !important;
     color: #ffffff;
-    /* border: #7DCDA0 1px solid; */
-
 }
 
 .text-muted {
@@ -344,4 +420,18 @@ body {
 .box-flex {
     display: flex;
     justify-content: space-between;
+}
+
+/* Desktop First */
+
+@media screen and (max-width:1024px) {
+}
+
+@media screen and (max-width:768px) {
+}
+
+@media screen and (max-width:480px) {
+}
+
+@media screen and (max-width:320px) {
 }

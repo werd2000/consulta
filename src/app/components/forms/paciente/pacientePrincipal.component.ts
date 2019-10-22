@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { PacienteProfile } from 'src/app/models/paciente.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
@@ -30,7 +30,7 @@ export class PacientePrincipalComponent implements OnInit {
 
   @Input() paciente: PacienteProfile;
   @Input() modo: string;
-  @Output() imprimir: EventEmitter<PacienteProfile>;
+  // @Output() imprimir: EventEmitter<PacienteProfile>;
   ver: boolean;
   forma: FormGroup;
   listaEstadosPacientes = ['ESPERA', 'EVALUACION', 'DEVOLUCION', 'TRATAMIENTO', 'ALTA', 'ABANDONO', 'DERIVADO'];
@@ -51,7 +51,7 @@ export class PacientePrincipalComponent implements OnInit {
     public usuarioService: UsuarioService,
     public subirArchivoService: SubirArchivoService
   ) {
-    this.imprimir = new EventEmitter();
+    // this.imprimir = new EventEmitter();
   }
 
   ngOnInit() {
@@ -139,9 +139,9 @@ export class PacientePrincipalComponent implements OnInit {
     this.location.back();
   }
 
-  imprimirPaciente() {
-    this.imprimir.emit(this.paciente);
-  }
+  // imprimirPaciente() {
+    // this.imprimir.emit(this.paciente);
+  // }
 
   controlFechaNac(paciente) {
     if (this.forma.value.fecha_nac) {

@@ -20,8 +20,8 @@
                     <input formControlName="observaciones" matInput placeholder="Observaciones">
                 </mat-form-field>
   
-                <div class="w-100">
-                    <button mat-raised-button color="primary" *ngIf="!ver" class="w-50 mr-2">
+                <div class="row">
+                    <button mat-raised-button color="primary" *ngIf="!ver" class="w-50">
                     <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Guardar icon">save</mat-icon>
                     Guardar
                 </button>
@@ -35,15 +35,11 @@
             </form>
         </mat-card-content>
   
-        <div class="w-100">
+        <div class="row">
             <button mat-raised-button color="primary" *ngIf="ver" (click)="editarTipo()" class="w-100">
                 <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Editar icon">edit</mat-icon>
                 Editar
             </button>
-            <!-- <button mat-raised-button color="accent" *ngIf="ver" (click)="imprimirTipo()" class="w-50">
-                <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Imprimir icon">print</mat-icon>
-                Imprimir
-            </button> -->
         </div>
   
   

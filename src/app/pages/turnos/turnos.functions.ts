@@ -67,24 +67,48 @@ export class TurnosFunctions {
         }        
         array[index].duracion = duracion;
 
-        let entrada = moment('08:00','HH:mm');
-        let min = moment.duration(inicio.diff(entrada)).minutes();
-        let hs = moment.duration(inicio.diff(entrada)).hours() * 60;
-        let top = (hs + min) * 2;        
+        const grilla = [];
+        let horaInicial = '08:00';
+        let varTop = 145;
+        for ( var i = 0; i <= 48; i++) {
+          grilla.push(
+            { hora: moment(horaInicial,'HH:mm').add(i * 5, 'm').format('HH:mm'),
+              top: varTop + (i * 10)
+            }
+          );
+        }
+        horaInicial = '15:30';
+        varTop = 645;
+        for ( var i = 0; i <= 48; i++) {
+          grilla.push(
+            { hora: moment(horaInicial,'HH:mm').add(i * 5, 'm').format('HH:mm'),
+              top: varTop + (i * 10)
+            }
+          );
+        }
+        console.log(grilla[81]);
+        
+        
+        const resultado = grilla.find( horario => horario.hora === turno.horaInicio );
+        if (turno.horaInicio == '18:10') {
+          console.log(resultado, turno.horaInicio);
+        }
+                
+        let top = resultado.top;
+        
         if (index != 0) {
-          top = top - (duracion * 2 * index);
-          array[index].top = top  + 'px';
+          // top = top - (duracion * 2 * index);
+          // array[index].top = top - duracion  + 'px';
+          array[index].top = top + 'px';
+          if (turno.horaInicio == '18:10') {
+            console.log(index);
+            console.log(duracion);            
+            console.log('top - (duracion * 2 * index)', top);
+          }
         }
         
-        if (turno.horaInicio === '09:20') {
-          console.log("dif entre inicio y entrada", min);
-          console.log('Hora de inicio',turno.horaInicio);
-          console.log('top', top);
-        }
-        if (top >= 500) {
-          top = top - 300;
-        }
         array[index].top = top  + 'px';
+        
     }
 
 }

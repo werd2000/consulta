@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { LOCALE_ID, Component, OnInit, OnDestroy } from '@angular/core';
 import { PersonalService, TurnosService, UsuarioService, PacienteService, ModalTurnoService } from 'src/app/services/service.index';
 import { EmpleadoProfile } from 'src/app/models/empleado.model';
 import { Subscription } from 'rxjs';
@@ -14,8 +14,9 @@ import { MY_FORMATS } from 'src/app/config/config';
   selector: 'app-turnos',
   templateUrl: './turnos.component.html',
   providers: [
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    { provide: LOCALE_ID, useValue: "es-AR"}
   ]
 })
 export class TurnosComponent implements OnInit, OnDestroy {
@@ -26,7 +27,6 @@ export class TurnosComponent implements OnInit, OnDestroy {
   widthColumnD: string;
   turnos: any;
   suscriptor: Subscription[] = [];
-  // horario = ['08:00', '08:30', '09:00', '09:30'];
   fecha: moment.Moment;
   turnosFunction: any;
 
@@ -66,6 +66,7 @@ export class TurnosComponent implements OnInit, OnDestroy {
                     if (x > y) {return 1;}
                     return 0;
                 });
+
                 await this.turnos.forEach(
                   this.turnosFunction.paraMostrar.bind(this)
                 );                
@@ -79,7 +80,7 @@ export class TurnosComponent implements OnInit, OnDestroy {
               })
             );
         });
-
+        
         let elem = document.getElementById('encabezado-turnos');
         this.widthColumnE = (elem.offsetWidth / personal.length) + 'px';
         elem = document.getElementById('detalle-turnos');

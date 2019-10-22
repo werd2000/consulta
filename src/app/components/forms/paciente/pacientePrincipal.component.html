@@ -4,16 +4,18 @@
         <mat-card-content *ngIf="paciente">
             <form [formGroup]="forma" (ngSubmit)="guardar()" class="form-container">
 
-                <mat-form-field>
-                    <mat-select formControlName="estado" placeholder="Estado">
-                        <mat-option *ngFor="let estado of listaEstadosPacientes" [value]="estado">
-                            {{ estado }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+                <div class="row">
+                    <mat-form-field class="w-100">
+                        <mat-select formControlName="estado" placeholder="Estado">
+                            <mat-option *ngFor="let estado of listaEstadosPacientes" [value]="estado">
+                                {{ estado }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
 
-                <div class="w-100">
-                    <mat-form-field class="w-25 mr-2">
+                <div class="row">
+                    <mat-form-field class="w-25">
                         <mat-select placeholder="Tipo Doc." formControlName="tipo_doc">
                             <mat-option *ngFor="let tipoDoc of listaTipoDoc" [value]="tipoDoc">
                                 {{tipoDoc}}
@@ -27,30 +29,38 @@
                     </mat-form-field>
                 </div>
 
-                <mat-form-field>
-                    <input formControlName="apellido" matInput placeholder="Apellido">
-                    <mat-error *ngIf="forma.controls['apellido'].invalid">{{ error.campovacio }}</mat-error>
-                </mat-form-field>
+                <div class="row">
+                    <mat-form-field class="w-100">
+                        <input formControlName="apellido" matInput placeholder="Apellido">
+                        <mat-error *ngIf="forma.controls['apellido'].invalid">{{ error.campovacio }}</mat-error>
+                    </mat-form-field>
+                </div>
 
-                <mat-form-field>
-                    <input formControlName="nombre" matInput placeholder="Nombre">
-                    <mat-error *ngIf="forma.controls['nombre'].invalid">{{ error.campovacio }}</mat-error>
-                </mat-form-field>
+                <div class="row">
+                    <mat-form-field class="w-100">
+                        <input formControlName="nombre" matInput placeholder="Nombre">
+                        <mat-error *ngIf="forma.controls['nombre'].invalid">{{ error.campovacio }}</mat-error>
+                    </mat-form-field>
+                </div>
 
-                <mat-form-field>
-                    <mat-select placeholder="Sexo" formControlName="sexo">
-                        <mat-option *ngFor="let sexo of listaSexos" [value]="sexo">
-                            {{sexo}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+                <div class="row">
+                    <mat-form-field class="w-100">
+                        <mat-select placeholder="Sexo" formControlName="sexo">
+                            <mat-option *ngFor="let sexo of listaSexos" [value]="sexo">
+                                {{sexo}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
 
-                <mat-form-field>
-                    <input formControlName="nacionalidad" matInput placeholder="Nacionalidad">
-                </mat-form-field>
+                <div class="row">
+                    <mat-form-field class="w-100">
+                        <input formControlName="nacionalidad" matInput placeholder="Nacionalidad">
+                    </mat-form-field>
+                </div>
 
-                <div class="w-100">
-                    <mat-form-field class="w-75 mr-2">
+                <div  class="row">
+                    <mat-form-field class="w-75">
                         <input matInput formControlName="fecha_nac" [matDatepicker]="fechaNac" placeholder="Fecha de nacimiento" (dateChange)="calcularEdad($event)">
                         <mat-datepicker-toggle matSuffix [for]="fechaNac"></mat-datepicker-toggle>
                         <mat-datepicker #fechaNac value="paciente.fechaNac"></mat-datepicker>
@@ -61,12 +71,14 @@
                     </mat-form-field>
                 </div>
 
-                <mat-form-field>
-                    <textarea formControlName="observaciones" matInput placeholder="Observaciones" rows="3"></textarea>
-                </mat-form-field>
+                <div class="row">
+                    <mat-form-field class="w-100">
+                        <textarea formControlName="observaciones" matInput placeholder="Observaciones" rows="3"></textarea>
+                    </mat-form-field>
+                </div>
 
-                <div class="w-100">
-                    <mat-form-field class="w-50 mr-2">
+                <div  class="row">
+                    <mat-form-field class="w-50">
                         <input formControlName="fecha_alta" matInput [matDatepicker]="fecha_alta" placeholder="Fecha de ingreso">
                         <mat-datepicker-toggle matSuffix [for]="fecha_alta"></mat-datepicker-toggle>
                         <mat-datepicker #fecha_alta></mat-datepicker>
@@ -79,8 +91,8 @@
                     </mat-form-field>
                 </div>
 
-                <div class="w-100">
-                    <button mat-raised-button color="primary" *ngIf="!ver" class="w-50 mr-2">
+                <div class="row">
+                    <button mat-raised-button color="primary" *ngIf="!ver" class="w-50">
                         <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Guardar icon">save</mat-icon>
                         Guardar
                     </button>

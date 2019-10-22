@@ -12,6 +12,7 @@ import { Turno } from 'src/app/models/turno.model';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { isString } from 'util';
+import { TurnoInterface } from 'src/app/interfaces/turno.interface';
 
 @Component({
   selector: 'app-add-turno',
@@ -35,6 +36,8 @@ export class AddTurnoComponent implements OnInit {
   turno: Turno;
   @Output() guardado;
   pacientesConFiltro: Observable<any[]>;
+  diaSemana: any;
+  mostrarRepetirTurno = false;
   
   constructor(
     public dialogRef: MatDialogRef<AddTurnoComponent>,
@@ -82,7 +85,8 @@ export class AddTurnoComponent implements OnInit {
       area: new FormControl(this.turno.area, Validators.required),
       idProfesional: new FormControl(this.turno.idProfesional, Validators.required),
       estado:  new FormControl(this.turno.estado, Validators.required),
-      observaciones: new FormControl(this.turno.observaciones)
+      observaciones: new FormControl(this.turno.observaciones),
+      repetir: new FormControl(false)
     });
 
     this.pacientesConFiltro = this.forma.controls.idPaciente.valueChanges
@@ -131,7 +135,10 @@ export class AddTurnoComponent implements OnInit {
     this.dialogRef.close();    
   }
 
-  guardarTurno() {    
+  guardarTurno() {
+    if(this.forma.invalid){
+      return;
+    }
     const turno = this.forma.value;
     turno.creacion = moment().format('YYYY-MM-DD');
     turno.actualizado = moment().format('YYYY-MM-DD');
@@ -141,10 +148,24 @@ export class AddTurnoComponent implements OnInit {
       turno._id = this.turno._id;
       this.turnosService.updateTurno(turno);
     } else {
+      // primero guardo el turno
       this.turnosService.createTurno(turno);
+      this.repetirTurnos(turno);
     }
     this.guardado.emit(true);
     this.dialogRef.close();
+  }
+
+  repetirTurnos(turno: TurnoInterface) {
+    // console.log (this.forma.controls.repetir.value);
+    if (this.forma.controls.repetir.value) {
+      // se repite
+      for(var i = 0; i < 4; i++){  
+        turno.fechaInicio = moment(turno.fechaInicio).add(7, 'days').format('YYYY-MM-DD');
+        turno.fechaFin = moment(turno.fechaFin).add(7, 'days').format('YYYY-MM-DD');
+        this.turnosService.createTurno(turno);
+      }
+    }
   }
 
   actualizarHoraFin() {
@@ -171,6 +192,11 @@ export class AddTurnoComponent implements OnInit {
     let strHoraFin = strNuevaHora + ':' + strNuevoMin;
 
     this.forma.controls.horaFin.setValue(strHoraFin);
+
+    this.mostrarRepetirTurno = true;
+    this.diaSemana = moment(this.forma.controls.fechaInicio.value).format('dddd') + 
+      ' a las ' + this.forma.controls.horaInicio.value + 'hs';
+    
   }
 
 }

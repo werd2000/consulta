@@ -1,14 +1,17 @@
-<mat-card class="mat-card-turnos" [ngStyle]="{'height': turno.duracion * 2 + 'px', 'top': turno.top }">
+<mat-card class="mat-card-turnos" [ngStyle]="{'height': turno.duracion * 2 + 'px', 'top': turno.top}" style="position: absolute; width: inherit">
               
-  <mat-card-header *ngIf="turno.paciente" class="turnos-header" [ngClass]="turno.estilo" style="align-content: space-between">
-      <!-- <div class="w-25"> -->
+  <mat-card-header *ngIf="turno.paciente" class="turnos-header" [ngClass]="turno.estilo">
+      <div class="col-4">
         <img mat-card-avatar [src]="turno.paciente.img | imagen" class="card-img-turnos">
-      <!-- </div> -->
-      <mat-card-title *ngIf="turno.paciente" class="card-title-turnos">
-          {{ turno.paciente.apellido }} {{ turno.paciente.nombre }}
-      </mat-card-title>
+      </div>
+      
+      <div class="col-6" style="overflow: hidden;">
+        <mat-card-title *ngIf="turno.paciente" class="card-title-turnos">
+            {{ turno.paciente.apellido }} {{ turno.paciente.nombre }}
+        </mat-card-title>
+      </div>
 
-      <div class="w-10">
+      <div class="col-2">
         <button mat-button [matMenuTriggerFor]="menuTurno" class="menu-turno">
           <mat-icon>more_vert</mat-icon>
         </button>

@@ -2,7 +2,7 @@
 
 <mat-card>
 
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" *ngIf="!cargando">
         <mat-toolbar-row>
             <span>Personal</span>
             <span class="toolbar-spacer"></span>
@@ -29,22 +29,18 @@
     </mat-toolbar>
 
     <mat-card-content>
-        <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
-        </mat-form-field>
+        <div class="row" *ngIf="!cargando">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+            </mat-form-field>
+        </div>
 
-        <mat-table [dataSource]="dataSource" matSort>
-
-            <!-- Column -->
-            <!-- <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
-            </ng-container> -->
+        <mat-table [dataSource]="dataSource" matSort *ngIf="!cargando">
 
             <ng-container matColumnDef="imagen">
                 <mat-header-cell *matHeaderCellDef> Foto </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                    <img [src]="element.img | imagen" class="foto-paciente-sm">
+                    <img [src]="element.img | imagen" class="foto-sm">
                 </mat-cell>
             </ng-container>
 

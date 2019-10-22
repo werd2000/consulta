@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+// importar locales
+import localeEsAR from '@angular/common/locales/es-AR';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +30,9 @@ import { LoginComponent } from './login/login.component';
 import { APP_ROUTES } from './app.routes';
 
 
+// registrar los locales con el nombre que quieras utilizar a la hora de proveer
+registerLocaleData(localeEsAR, 'es-Ar');
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +52,8 @@ import { APP_ROUTES } from './app.routes';
     MaterialModule,
   ],
   providers: [
-    AngularFireStorage
+    AngularFireStorage,
+    { provide: LOCALE_ID, useValue: 'es-Ar' }
   ],
   bootstrap: [AppComponent]
 })

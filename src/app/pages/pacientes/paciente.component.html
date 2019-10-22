@@ -7,37 +7,39 @@
         <span class="toolbar-spacer"></span>
 
         <!-- HERRAMIENTAS -->
-        <app-btn-volver [modelo]="'mat-icon'"></app-btn-volver>
-        <button mat-icon-button matTooltip="Turnos" (click)="verTurnos()">
-            <mat-icon aria-hidden="false" aria-label="Turnos icon">
-                <i class="material-icons">alarm</i>
-            </mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Imprimir" (click)="imprimirPaciente()">
-            <mat-icon aria-hidden="false" aria-label="Imprimir icon">
-                print
-            </mat-icon>
-        </button>
-        <button *ngIf="modo === 'ver'" mat-icon-button matTooltip="Editar" (click)="editarPaciente()">
-            <mat-icon aria-hidden="false" aria-label="Editar icon">
-                edit
-            </mat-icon>
-        </button>
-        <button *ngIf="modo === 'editar'" mat-icon-button matTooltip="Ver" (click)="verPaciente()">
-            <mat-icon aria-hidden="false" aria-label="Ver icon">
-                remove_red_eye
-            </mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Informes">
-            <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Informes icon">
-                <i class="fas fa-file-prescription paciente-tab-icon"></i>
-            </mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Salud">
-            <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Salud icon">
-                <i class="fas fa-heartbeat paciente-tab-icon"></i>
-            </mat-icon>
-        </button>
+        <div class="botonera">
+            <app-btn-volver [modelo]="'mat-icon'"></app-btn-volver>
+            <button mat-icon-button matTooltip="Turnos" (click)="verTurnos()">
+                <mat-icon aria-hidden="false" aria-label="Turnos icon">
+                    <i class="material-icons">alarm</i>
+                </mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Imprimir" (click)="imprimirPaciente()">
+                <mat-icon aria-hidden="false" aria-label="Imprimir icon">
+                    print
+                </mat-icon>
+            </button>
+            <button *ngIf="modo === 'ver'" mat-icon-button matTooltip="Editar" (click)="editarPaciente()">
+                <mat-icon aria-hidden="false" aria-label="Editar icon">
+                    edit
+                </mat-icon>
+            </button>
+            <button *ngIf="modo === 'editar'" mat-icon-button matTooltip="Ver" (click)="verPaciente()">
+                <mat-icon aria-hidden="false" aria-label="Ver icon">
+                    remove_red_eye
+                </mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Informes">
+                <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Informes icon">
+                    <i class="fas fa-file-prescription paciente-tab-icon"></i>
+                </mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Salud">
+                <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Salud icon">
+                    <i class="fas fa-heartbeat paciente-tab-icon"></i>
+                </mat-icon>
+            </button>
+        </div>
         <!-- FIN HERRAMIENTAS -->
     </mat-card-header>
 

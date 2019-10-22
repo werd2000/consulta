@@ -4,8 +4,8 @@
         <mat-card-content *ngIf="domicilio">
             <form [formGroup]="formaDomicilio" (ngSubmit)="guardar()" class="form-container">
 
-                <div class="w-100">
-                    <mat-form-field class="w-50 mr-2">
+                <div class="row">
+                    <mat-form-field class="w-50">
                         <input formControlName="calle" matInput placeholder="Calle">
                         <mat-error *ngIf="formaDomicilio.controls['calle'].invalid">{{ error.campovacio }}</mat-error>
                     </mat-form-field>
@@ -16,29 +16,37 @@
                     </mat-form-field>
                 </div>
 
-                <mat-form-field>
-                    <input formControlName="barrio" matInput placeholder="Barrio">
-                    <mat-error *ngIf="formaDomicilio.controls['barrio'].invalid">{{ error.campovacio }}</mat-error>
-                </mat-form-field>
+                <div class="row">
+                    <mat-form-field class="w-100">
+                        <input formControlName="barrio" matInput placeholder="Barrio">
+                        <mat-error *ngIf="formaDomicilio.controls['barrio'].invalid">{{ error.campovacio }}</mat-error>
+                    </mat-form-field>
+                </div>
 
-                <mat-form-field>
-                    <input formControlName="ciudad" matInput placeholder="Ciudad">
-                </mat-form-field>
+                <div class="row">
+                    <mat-form-field class="w-75">
+                        <input formControlName="ciudad" matInput placeholder="Ciudad">
+                    </mat-form-field>
 
-                <mat-form-field>
-                    <input formControlName="cp" matInput placeholder="C.P.">
-                </mat-form-field>
+                    <mat-form-field class="w-25">
+                        <input formControlName="cp" matInput placeholder="C.P.">
+                    </mat-form-field>
+                </div>
 
-                <mat-form-field>
-                    <input formControlName="provincia" matInput placeholder="Provincia">
-                </mat-form-field>
+                <div class="row">
+                    <mat-form-field class="w-100">
+                        <input formControlName="provincia" matInput placeholder="Provincia">
+                    </mat-form-field>
+                </div>
 
-                <mat-form-field>
-                    <input formControlName="pais" matInput placeholder="País">
-                </mat-form-field>
+                <div class="row">
+                    <mat-form-field class="w-100">
+                        <input formControlName="pais" matInput placeholder="País">
+                    </mat-form-field>
+                </div>
 
-                <div class="w-100">
-                    <button mat-raised-button color="primary" *ngIf="!ver" class="w-50 mr-2">
+                <div  class="row">
+                    <button mat-raised-button color="primary" *ngIf="!ver" class="w-50">
                       <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Guardar icon">save</mat-icon>
                       Guardar
                   </button>

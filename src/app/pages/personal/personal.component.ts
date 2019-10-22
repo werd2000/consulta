@@ -11,7 +11,7 @@ import { EmpleadoProfile } from 'src/app/models/empleado.model';
 })
 export class PersonalComponent implements OnInit {
 
-  public cargando: boolean;
+  public cargando = true;
   displayedColumns: string[] = [
     'imagen',
     'apellido',

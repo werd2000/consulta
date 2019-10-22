@@ -14,7 +14,10 @@ export class FechaEdadService {
   constructor() { }
 
   calcularEdad( fechaNac, fechaActual = null) {
-    return moment(fechaNac, 'YYYYMMDD').fromNow(true);
+    // const years = moment().diff(fechaNac, 'years');
+    // console.log('fechaNac', years);
+    // return moment(fechaNac, 'YYYYMMDD').fromNow(true);
+    return moment().diff(fechaNac, 'years') + ' años';
   }
 
   // calcularEdadMeses( fechaEvaluacion, fechaNac ) {

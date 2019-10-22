@@ -7,7 +7,7 @@
                 <div formArrayName="contactos">
                     <div class="form-group row" *ngFor="let contacto of formaContacto.controls['contactos'].controls; let i = index" [formGroupName]=i>
 
-                        <mat-form-field class="w-25 mr-2px">
+                        <mat-form-field class="w-25">
                             <mat-select placeholder="Tipo" formControlName="tipo">
                                 <mat-option *ngFor="let tipoContacto of listaTipoContactos" [value]="tipoContacto.tipo">
                                     {{tipoContacto.tipo}}
@@ -15,11 +15,11 @@
                             </mat-select>
                         </mat-form-field>
 
-                        <mat-form-field class="w-25 mr-2px">
+                        <mat-form-field class="w-25">
                             <input formControlName="valor" matInput placeholder="Valor">
                         </mat-form-field>
 
-                        <mat-form-field class="w-33 mr-2px">
+                        <mat-form-field class="w-33">
                             <input formControlName="observaciones" matInput placeholder="Observaciones">
                         </mat-form-field>
 
@@ -30,8 +30,8 @@
 
                     </div>
                     <a mat-button color="primary" (click)="agregarContacto()" *ngIf="!ver">Agregar nuevo contacto +</a>
-                    <div class="w-100">
-                        <button mat-raised-button color="primary" *ngIf="!ver" class="w-50 mr-2">
+                    <div class="row">
+                        <button mat-raised-button color="primary" *ngIf="!ver" class="w-50">
                           <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="Guardar icon">save</mat-icon>
                           Guardar
                         </button>
