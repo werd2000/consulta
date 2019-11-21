@@ -8,6 +8,8 @@ import * as moment from 'moment';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from 'src/app/models/usuario.model';
 import { Domicilio } from 'src/app/models/domicilio.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConstanciaTratamientoComponent } from './constancia-tratamiento.component';
 
 @Component({
   selector: 'app-paciente',
@@ -29,7 +31,8 @@ export class PacienteComponent implements OnInit {
     public route: Router,
     public pacientesService: PacienteService,
     public usuarioService: UsuarioService,
-    public printService: PrintService
+    public printService: PrintService,
+    public dialog: MatDialog
   ) {
     this.cargando = false;
   }
@@ -126,7 +129,7 @@ export class PacienteComponent implements OnInit {
   }
 
   verTurnos() {
-    this.route.navigate(['/turnos/paciente/' + this.paciente._id])    
+    this.route.navigate(['/turnos/paciente/' + this.paciente._id]);
   }
 
   editarPaciente() {
@@ -135,6 +138,26 @@ export class PacienteComponent implements OnInit {
 
   verPaciente() {
     this.route.navigate(['/paciente/ver/' + this.paciente._id]);
+  }
+
+  constanciaTratamiento(): void {
+    // console.log('constancia de tratamiento');
+    const dialogRef = this.dialog.open(ConstanciaTratamientoComponent, {
+      width: '500px',
+      data: {
+        // tslint:disable-next-line: max-line-length
+        texto: `Se hace constar que ${this.paciente.apellido}, ${this.paciente.nombre} se encuentra en tratamiento FONOAUDIOLÓGICO en este instituto asistiendo los días __________ a las ______hs.`
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // console.log(result);
+        this.printService.crearConstanciaTratamiento(result);
+        this.printService.imprimir();
+      }
+      // console.log('The dialog was closed');
+    });
   }
 
 }

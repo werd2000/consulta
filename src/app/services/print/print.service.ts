@@ -60,6 +60,11 @@ export class PrintService {
     this.lista = this.printPacienteService.crearListaTurnosPaciente(paciente, turnos);
   }
 
+  crearConstanciaTratamiento( texto: string ) {
+    console.log(texto);
+    this.lista = this.printPacienteService.imprimirConstanciaTratamiento(texto);
+  }
+
   // PERSONAL
   crearListaPersonal(encabezado: string[], listado: EmpleadoProfile[]) {
     this.crearEncabezadoLista(encabezado);
@@ -71,7 +76,7 @@ export class PrintService {
     this.lista = this.printPersonalService.crearFichaPersonal(empleado);
   }
 
-  listaTurnosPersonal( personal: EmpleadoProfile, turnos: TurnoInterface[] ) {    
+  listaTurnosPersonal( personal: EmpleadoProfile, turnos: TurnoInterface[] ) {
     this.lista = this.printPersonalService.crearListaTurnosPersonal(personal, turnos);
   }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PacienteProfile } from 'src/app/models/paciente.model';
+import * as moment from 'moment';
 declare const $;
 
 @Injectable({
@@ -25,12 +26,12 @@ export class PrintPacienteService {
     this.ficha += this.imprimirDatosFamiliares(paciente);
     this.ficha += this.imprimirSSocial(paciente);
 
-    this.ficha += this.crearFinContenedorLista();    
+    this.ficha += this.crearFinContenedorLista();
     return this.ficha;
   }
 
   crearContenedorLista(titulo: string) {
-    let html= '<div class="container">';
+    let html = '<div class="container">';
     html += '<h2 class="text-center bg-secondary text-white"> DATOS de ' + titulo + '</h2>';
     html += '<table class="table table-sm">';
     html += '<tbody>';
@@ -210,7 +211,6 @@ export class PrintPacienteService {
   }
 
   crearListaTurnosPaciente(paciente, listado) {
-    
     let html = this.crearContenedorLista( 'TURNOS DE ' + paciente.getNombreCompleto());
     for (const item of listado) {
       html += '<tr>';
@@ -223,7 +223,18 @@ export class PrintPacienteService {
     }
     html += this.crearFinContenedorLista();
     return html;
-    
+  }
+
+  imprimirConstanciaTratamiento(cuerpo: string) {
+    let html = '<div class="container"><div class="row justify-content-md-center"><div class="col-10">';
+    html += '<br><br><br><br><br><br>';
+    html += '<h1 class="text-center"> Constancia de tratamiento </h1>';
+    html += '<hr><br><br>';
+    html += `<h4 class="text-right">Posadas, ${moment().format('dddd D MMMM YYYY')}</h4>`;
+    html += '<br>';
+    html += '<h5 class="text-justify">' + cuerpo + '</h5>';
+    html += '</div></div></div>';
+    return html;
   }
 
 }

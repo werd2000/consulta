@@ -1,0 +1,30 @@
+.dashboard-flex {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pacientes-card {
+    border-bottom: mediumblue 3px solid;
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.profesionales-card {
+    border-bottom: red 3px solid;
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.turnos-card {
+    border-bottom: green 3px solid;
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.areas-card {
+    border-bottom: orange 3px solid;
+    width: 300px;
+    flex-shrink: 0;
+}

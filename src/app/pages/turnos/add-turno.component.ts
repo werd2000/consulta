@@ -3,7 +3,14 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PacienteProfile } from 'src/app/models/paciente.model';
 import { Area } from 'src/app/models/area.model';
 import { EmpleadoProfile } from 'src/app/models/empleado.model';
-import { ModalTurnoService, PacienteService, AreasService, TurnosService, UsuarioService, PersonalService } from 'src/app/services/service.index';
+import {
+  ModalTurnoService,
+  PacienteService,
+  AreasService,
+  TurnosService,
+  UsuarioService,
+  PersonalService
+} from 'src/app/services/service.index';
 import * as moment from 'moment';
 import { ERRORES, MY_FORMATS } from 'src/app/config/config';
 import { MatDialogRef, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MAT_DIALOG_DATA } from '@angular/material';
@@ -38,7 +45,7 @@ export class AddTurnoComponent implements OnInit {
   pacientesConFiltro: Observable<any[]>;
   diaSemana: any;
   mostrarRepetirTurno = false;
-  
+
   constructor(
     public dialogRef: MatDialogRef<AddTurnoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -56,9 +63,9 @@ export class AddTurnoComponent implements OnInit {
     this.cargarPacientes();
     this.cargarAreas();
     this.cargarProfesionales();
-    
+
     const fechaHoy = this.data;
-    
+
     if (!this.data || typeof this.data === 'string') {
       this.turno = new Turno(
         '',
@@ -74,7 +81,7 @@ export class AddTurnoComponent implements OnInit {
         '');
     } else {
       this.turno = this.data;
-    }    
+    }
 
     this.forma = new FormGroup({
       idPaciente: new FormControl(this.data.paciente, Validators.required),
@@ -132,11 +139,11 @@ export class AddTurnoComponent implements OnInit {
   }
 
   cerrarModal() {
-    this.dialogRef.close();    
+    this.dialogRef.close();
   }
 
   guardarTurno() {
-    if(this.forma.invalid){
+    if (this.forma.invalid) {
       return;
     }
     const turno = this.forma.value;
@@ -160,7 +167,7 @@ export class AddTurnoComponent implements OnInit {
     // console.log (this.forma.controls.repetir.value);
     if (this.forma.controls.repetir.value) {
       // se repite
-      for(var i = 0; i < 4; i++){  
+      for (let i = 0; i < 4; i++) {
         turno.fechaInicio = moment(turno.fechaInicio).add(7, 'days').format('YYYY-MM-DD');
         turno.fechaFin = moment(turno.fechaFin).add(7, 'days').format('YYYY-MM-DD');
         this.turnosService.createTurno(turno);
@@ -169,9 +176,9 @@ export class AddTurnoComponent implements OnInit {
   }
 
   actualizarHoraFin() {
-    let arrayHora = this.forma.controls.horaInicio.value.split(':');
-    let hora = parseInt(arrayHora[0]);
-    let min = parseInt(arrayHora[1]);
+    const arrayHora = this.forma.controls.horaInicio.value.split(':');
+    const hora = parseInt(arrayHora[0]);
+    const min = parseInt(arrayHora[1]);
     let nuevoMin = min + 40;
     let nuevaHora = hora;
     if (nuevoMin >= 60) {
@@ -189,14 +196,13 @@ export class AddTurnoComponent implements OnInit {
     if (nuevaHora <= 9 ) {
       strNuevaHora = '0' + nuevaHora;
     }
-    let strHoraFin = strNuevaHora + ':' + strNuevoMin;
+    const strHoraFin = strNuevaHora + ':' + strNuevoMin;
 
     this.forma.controls.horaFin.setValue(strHoraFin);
 
     this.mostrarRepetirTurno = true;
     this.diaSemana = moment(this.forma.controls.fechaInicio.value).format('dddd') + 
       ' a las ' + this.forma.controls.horaInicio.value + 'hs';
-    
   }
 
 }

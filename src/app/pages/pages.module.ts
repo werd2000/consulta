@@ -39,6 +39,7 @@ import { AddTurnoComponent } from './turnos/add-turno.component';
 import { TurnosPacienteComponent } from './pacientes/turnos-paciente.component'
 import { CardTurnoComponent } from './turnos/card-turno.component';
 import { PersonalTurnosComponent } from './personal/personal-turnos.component';
+import { ConstanciaTratamientoComponent } from './pacientes/constancia-tratamiento.component';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { PersonalTurnosComponent } from './personal/personal-turnos.component';
     TurnosPacienteComponent,
     CardTurnoComponent,
     PersonalTurnosComponent,
+    ConstanciaTratamientoComponent,
   ],
   exports: [
     // PagesComponent,
@@ -101,7 +103,8 @@ import { PersonalTurnosComponent } from './personal/personal-turnos.component';
     CardTurnoComponent,
   ],
   entryComponents: [
-    AddTurnoComponent
+    AddTurnoComponent,
+    ConstanciaTratamientoComponent
   ],
 })
 export class PagesModule { }

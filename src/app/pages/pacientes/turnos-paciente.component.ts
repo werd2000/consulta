@@ -1,7 +1,13 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { PacienteService, UsuarioService, TurnosService, PersonalService, PrintService, ExportPdfService } from 'src/app/services/service.index';
+import {
+  PacienteService,
+  UsuarioService,
+  TurnosService,
+  PersonalService,
+  PrintService,
+  ExportPdfService } from 'src/app/services/service.index';
 import { PacienteProfile } from 'src/app/models/paciente.model';
 import { Usuario } from 'src/app/models/usuario.model';
 import { Turno } from 'src/app/models/turno.model';
@@ -55,7 +61,7 @@ export class TurnosPacienteComponent implements OnInit, OnDestroy{
       this.personalService
     );
   }
-    
+
   ngOnInit() {
     this.suscription.push(
       this.activatedRoute.params.subscribe( params => {
@@ -66,8 +72,8 @@ export class TurnosPacienteComponent implements OnInit, OnDestroy{
             this.turnosPaciente.sort((a, b) => {
               var x = a.fechaInicio.toLowerCase();
               var y = b.fechaInicio.toLowerCase();
-              if (x > y) {return -1;}
-              if (x < y) {return 1;}
+              if (x > y) {return -1; }
+              if (x < y) {return 1; }
               return 0;
             });
             await this.turnosPaciente.forEach(this.paraMostrar.bind(this));
@@ -75,7 +81,7 @@ export class TurnosPacienteComponent implements OnInit, OnDestroy{
             this.dataSource = new MatTableDataSource(this.turnosPaciente);
             this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.paginator;
-          })
+          });
       })
     );
   }
@@ -115,13 +121,13 @@ export class TurnosPacienteComponent implements OnInit, OnDestroy{
             );
         }
 
-        return this.turnosService.searchTurnos('idPaciente', id);
+      return this.turnosService.searchTurnos('idPaciente', id);
       })
     );
   }
 
   cargarTurnos( id: string ) {
-    this.cargando = true;              
+    this.cargando = true;
     this.suscription.push(
       this.turnosService.searchTurnos('idPaciente', id)
       .subscribe( async t => {
@@ -129,8 +135,8 @@ export class TurnosPacienteComponent implements OnInit, OnDestroy{
           this.turnosPaciente.sort((a, b) => {
             var x = a.fechaInicio.toLowerCase();
             var y = b.fechaInicio.toLowerCase();
-            if (x > y) {return -1;}
-            if (x < y) {return 1;}
+            if (x > y) {return -1; }
+            if (x < y) {return 1; }
             return 0;
           });
           await this.turnosPaciente.forEach(this.paraMostrar.bind(this));
@@ -148,11 +154,11 @@ export class TurnosPacienteComponent implements OnInit, OnDestroy{
   }
 
   private getDuracion(turno, array, index) {
-    let inicio = moment(turno.horaInicio,'HH:mm');
-    let fin = moment(turno.horaFin,'HH:mm');
+    let inicio = moment(turno.horaInicio, 'HH:mm');
+    let fin = moment(turno.horaFin, 'HH:mm');
     array[index].duracion = moment.duration(inicio.diff(fin)).humanize();
   }
-  
+
   public getCreador(idUsuario: string, array, index) {
     this.usuarioService.getUsuarioId(idUsuario)
         .subscribe( resp => {
@@ -161,7 +167,7 @@ export class TurnosPacienteComponent implements OnInit, OnDestroy{
           this.cargando = false;
         });
   }
-  
+
   public getProfesional(idProfesional: string, array, index) {
     return this.personalService.getEmpleadolId(idProfesional)
       .subscribe( resp => {
@@ -174,7 +180,7 @@ export class TurnosPacienteComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.suscription.forEach(element => {
       element.unsubscribe();
-    })
+    });
   }
 
   imprimir() {

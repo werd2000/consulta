@@ -16,7 +16,7 @@ import { MY_FORMATS } from 'src/app/config/config';
   providers: [
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-    { provide: LOCALE_ID, useValue: "es-AR"}
+    { provide: LOCALE_ID, useValue: 'es-AR'}
   ]
 })
 export class TurnosComponent implements OnInit, OnDestroy {
@@ -62,15 +62,15 @@ export class TurnosComponent implements OnInit, OnDestroy {
                 this.turnos.sort((a, b) => {
                     var x = a.horaInicio.toLowerCase();
                     var y = b.horaInicio.toLowerCase();
-                    if (x < y) {return -1;}
-                    if (x > y) {return 1;}
+                    if (x < y) {return -1; }
+                    if (x > y) {return 1; }
                     return 0;
                 });
 
                 await this.turnos.forEach(
                   this.turnosFunction.paraMostrar.bind(this)
-                );                
-                
+                );
+
                 this.columns.push({
                     head: profesional,
                     campo: profesional.nombre,
@@ -80,7 +80,7 @@ export class TurnosComponent implements OnInit, OnDestroy {
               })
             );
         });
-        
+
         let elem = document.getElementById('encabezado-turnos');
         this.widthColumnE = (elem.offsetWidth / personal.length) + 'px';
         elem = document.getElementById('detalle-turnos');
@@ -94,7 +94,7 @@ export class TurnosComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.suscriptor.forEach(element => {
       element.unsubscribe();
-    })
+    });
   }
 
   nuevo(): void {
@@ -113,7 +113,7 @@ export class TurnosComponent implements OnInit, OnDestroy {
 
   hoy() {
     this.fecha = moment();
-    this.cargarTurnos();    
+    this.cargarTurnos();
   }
 
   diaAnterior() {

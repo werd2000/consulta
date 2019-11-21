@@ -1,5 +1,65 @@
 <mat-spinner *ngIf="cargando" style="margin: auto"></mat-spinner>
 
-<app-pacientes></app-pacientes>
+<!-- <app-personal></app-personal> -->
 
-<app-personal></app-personal>
+<mat-card-content class="dashboard-flex">
+  <div class="pacientes-card">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>Pacientes</mat-card-title>
+          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{cantPacientes}} Pacientes en la base de datos.
+          </p>
+        </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="profesionales-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Profesionales</mat-card-title>
+        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{cantPersonal}} Profesionales en la base de datos.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="turnos-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Turnos</mat-card-title>
+        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{cantTurnos}} Turnos hoy.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="areas-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Áreas</mat-card-title>
+        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{cantAreas}} Áreas en el Instituto.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+</mat-card-content>
+
+<app-pacientes></app-pacientes>

@@ -3,7 +3,7 @@
     <mat-card-header *ngIf="paciente">
         <img mat-card-avatar [src]="paciente.img | imagen">
         <mat-card-title *ngIf="paciente">{{ paciente.getNombreCompleto() }}</mat-card-title>
-        <mat-card-subtitle *ngIf="!cargando">Actualizado el {{ paciente.actualizadoEl | date:'dd-MM-yyyy'}} por {{ actualizadoPor.nombre }} </mat-card-subtitle>
+        <mat-card-subtitle class="mt-1" *ngIf="!cargando">Actualizado el {{ paciente.actualizadoEl | date:'dd-MM-yyyy'}} por {{ actualizadoPor.nombre }} </mat-card-subtitle>
         <span class="toolbar-spacer"></span>
 
         <!-- HERRAMIENTAS -->
@@ -14,11 +14,25 @@
                     <i class="material-icons">alarm</i>
                 </mat-icon>
             </button>
-            <button mat-icon-button matTooltip="Imprimir" (click)="imprimirPaciente()">
+            <button [matMenuTriggerFor]="belowMenu" mat-icon-button matTooltip="Imprimir">
                 <mat-icon aria-hidden="false" aria-label="Imprimir icon">
                     print
                 </mat-icon>
             </button>
+            <mat-menu #belowMenu="matMenu" yPosition="below">
+                <button mat-menu-item (click)="imprimirPaciente()">
+                    <mat-icon aria-hidden="false" aria-label="Imprimir icon">
+                        perm_identity
+                    </mat-icon>
+                    Datos del paciente
+                </button>
+                <button mat-menu-item (click)="constanciaTratamiento()">
+                    <mat-icon aria-hidden="false" aria-label="Imprimir icon">
+                        event_note
+                    </mat-icon>
+                    Constancia de tratamiento
+                </button>
+            </mat-menu>
             <button *ngIf="modo === 'ver'" mat-icon-button matTooltip="Editar" (click)="editarPaciente()">
                 <mat-icon aria-hidden="false" aria-label="Editar icon">
                     edit
