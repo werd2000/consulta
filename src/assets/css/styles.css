@@ -1,3 +1,13 @@
+:root {
+    --color-pacientes: mediumblue;
+    --color-profesionales: red;
+    --color-turnos: green;
+    --color-areas: orange;
+    --color-grey-ligth: #ececec;
+    --color-grey: #666666;
+    --space: 10px;
+    --radius: 4px;
+}
 
 body {
     font-family: Roboto, Arial, sans-serif;
@@ -5,11 +15,23 @@ body {
     font-size: .875rem !important;
 }
 
+footer {
+    /* margin-top: var(--space); */
+    width: 100%;
+    background-color: var(--color-grey-ligth);
+    height: calc(var(--space)*3);
+    text-align: center;
+    color: var(--color-grey);
+    font-size: .9em;
+    line-height: calc(var(--space) / 2);
+}
+
 .row {
     position: relative;
     margin: auto;
     width: 100%;
     height: auto;
+    display: flex;
 }
 
 [class*=col-] {
@@ -85,6 +107,57 @@ body {
     box-sizing: border-box;
 }
 
+/* COLORES */
+.color-pacientes {
+    color: var(--color-pacientes);
+}
+
+.color-profesionales {
+    color: var(--color-profesionales);
+}
+
+.color-turnos {
+    color: var(--color-turnos);
+}
+
+.color-areas {
+    color: var(--color-areas);
+}
+
+/* COLORES BCK */
+.color-bck-pacientes {
+    background-color: var(--color-pacientes) !important;
+    color: white !important;
+}
+
+.color-bck-profesionales {
+    background-color: var(--color-profesionales) !important;
+    color: white !important;
+}
+
+.color-bck-turnos {
+    background-color: var(--color-turnos) !important;
+    color: white !important;
+}
+
+.color-bck-areas {
+    background-color: var(--color-areas) !important;
+    color: white !important;
+}
+
+/* CARDS */
+.icon-title-card {
+    vertical-align: bottom;
+}
+
+.pacientes.mat-card{
+    margin-bottom: calc(var(--space) * 2);
+}
+
+.profesionales.mat-card{
+    margin-bottom: calc(var(--space) * 2);
+}
+
 /* WIDTHS */
 .w-100 {
     width: 100%;
@@ -117,6 +190,7 @@ body {
 .w-10 {
     width: 10% !important;
 }
+
 /* FIN WIDTHS */
 
 /* MARGINS */
@@ -132,8 +206,8 @@ body {
     margin: auto;
 }
 
-.m-1px {
-    margin: 1px;
+.m-1 {
+    margin: var(--space) !important;
 }
 
 .mr-2px {
@@ -150,14 +224,57 @@ body {
 /* FIN MARGINS */
 
 /* PADDINGS */
-.p-1px {
-    padding: 1px !important;
+.p-1 {
+    padding: var(--space) !important;
 }
 
-.p-3px {
-    padding: 3px !important;
+.p-2 {
+    padding: var(--space * 2) !important;
 }
 /* FIN PADDINGS */
+
+/* BORDER */
+.bradius {
+    border-radius: var(--radius);
+}
+
+/* DASHBOARD */
+.dashboard {
+    width: 100%;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.dashboard-card {
+    width: 300px;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.dashboard .pacientes-b-card {
+    border-bottom: var(--color-pacientes) 3px solid;
+}
+
+
+.dashboard .profesionales-b-card {
+    border-bottom: var(--color-profesionales) 3px solid;
+}
+
+.dashboard .turnos-b-card {
+    border-bottom: var(--color-turnos) 3px solid;
+}
+
+.dashboard .areas-b-card {
+    border-bottom: var(--color-areas) 3px solid;
+}
+
+/* FIN DASHBOARD */
+
+/* PACIENTES */
+.pacientes .mat-card-subtitle {
+    color: white !important;
+}
 
 .principal-container {
     display: -webkit-flex;
@@ -352,7 +469,7 @@ body {
 }
 .mat-card-header .mat-card-title {
     /* margin: 0px !important; */
-    width: 100%;
+    /* width: 100%; */
 }
 .mat-card-header-text {
     margin: 0 !important;

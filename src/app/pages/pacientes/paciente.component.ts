@@ -25,6 +25,7 @@ export class PacienteComponent implements OnInit {
   modo: string;
   actualizadoPor: Usuario;
   tabActual: number;
+  nombrePaciente: string;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -47,6 +48,7 @@ export class PacienteComponent implements OnInit {
       if (this.paramId !== 'nuevo') {
         this.cargarPaciente(this.paramId);
       } else {
+        this.nombrePaciente = 'Paciente nuevo';
         this.paciente = new PacienteProfile(
           '',
           '',
@@ -81,6 +83,7 @@ export class PacienteComponent implements OnInit {
             sweetAlert('Error', 'No se encuentra un paciente con esa identificación', 'warning');
             this.route.navigate(['pacientes']);
           } else {
+            this.nombrePaciente = resp.apellido + ', ' + resp.nombre;
             this.paciente = new PacienteProfile(
               resp.apellido,
               resp.nombre,

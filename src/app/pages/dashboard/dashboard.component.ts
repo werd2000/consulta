@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PacienteService, PersonalService, TurnosService, AreasService } from 'src/app/services/service.index';
+import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
+import { AddTurnoComponent } from '../turnos/add-turno.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +23,9 @@ export class DashboardComponent implements OnInit {
     private pacientesService: PacienteService,
     private personalService: PersonalService,
     private turnosService: TurnosService,
-    private areasService: AreasService
+    private areasService: AreasService,
+    private router: Router,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -37,7 +42,7 @@ export class DashboardComponent implements OnInit {
 
     this.turnosService.searchTurnos('fechaInicio', this.fecha.format('YYYY-MM-DD'))
       .subscribe( (turnos) => {
-        console.log(turnos);
+        // console.log(turnos);
         this.cantTurnos = turnos.length;
       });
 
@@ -47,4 +52,28 @@ export class DashboardComponent implements OnInit {
       });
   }
 
+  crearNuevoPaciente() {
+    this.router.navigate(['/paciente/nuevo']);
+  }
+
+  crearNuevoProfesional() {
+    this.router.navigate(['/empleado/nuevo']);
+  }
+
+  crearNuevoTurno() {
+      const dialogRef = this.dialog.open(AddTurnoComponent, {
+        width: '50%',
+        data: this.fecha.format('YYYY-MM-DD')
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          console.log(result);
+        }
+        // this.cargarTurnos();
+      });
+  }
+
+  crearNuevaArea() {
+    this.router.navigate(['/area/nuevo']);
+  }
 }
